@@ -29,8 +29,8 @@ class KioskVideoList extends React.Component {
     // Generate video-card positions
     this.videoOrder = this.createVideoOrder(props.shuffleOnStart);
 
-    this.transEnterTime = 500;
-    this.transLeaveTime = 400;
+    this.transEnterTime = 700;
+    this.transLeaveTime = 500;
 
     this.startInstructionCycle();
 
