@@ -22,6 +22,7 @@ body {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently not supported by any browser */
+  font-family: 'museo700', sans-serif;
 }
 
 .noselect {
@@ -60,7 +61,6 @@ h1 div.en {
 
 h1 div.en,
 h1 div.es {
-  font-family: 'Helvetica', sans-serif;
   line-height: 70px;
   font-size: 65px;
 }
@@ -79,13 +79,14 @@ h1 div.es {
 
 h2 div.en,
 h2 div.es {
-  font-family: 'Avenir Next Condensed Medium', sans-serif;
   color: white;
-  display: none;
+
   margin: 0 0 0 20px;
   line-height: 33px;
   font-size: 34px;
   letter-spacing: 0.025em;
+
+  display: none;
 }
 
 h2 div.es {
@@ -105,29 +106,81 @@ h2 div.es {
   width: 480px;
   height: 270px;
   transition: all .15s ease-out;
+
+}
+
+#selection-screen .video-button .overlay {
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  box-shadow: 0 0 0 0.5px black inset;
+
 }
 
 #selection-screen .video-button:active {
-  transform: scale(0.99) translate(0px, 2px);
-  transition: all .03s ease-out;
+  transform: scale(0.99) translate(0px, 0px);
+  transition: all .02s ease-out;
 }
 
 #selection-screen .video-button.active {
-  transform: scale(1.06) translate(0px, -2px);
+  transform: scale(1.06) translate(0px, -1px);
   z-index: 2;
+  transition: box-shadow .05s ease-in;
+  -webkit-box-shadow: 0px 0px 85px 6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 85px 6px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 85px 6px rgba(0,0,0,0.75);
+
 }
 
-#selection-screen .video-button img {
+#selection-screen .video-button img.dakota {
   width: 480px;
   height: 270px;
   position: absolute;
-  transition: opacity 2s 30s ease-in;
+  transition: opacity 1.5s 11s ease-in;
   opacity: 0.0;
 }
 
-#selection-screen .video-button.active img {
+#selection-screen .video-button.active img.dakota {
   transition: opacity 0.1s 1.0s ease-in;
   opacity: 1.0;
+}
+
+#selection-screen .video-button.disabled {
+  opacity: 0.175;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#selection-screen .instruction-card {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(0,0,0,0.9);
+  transition: opacity 0.7s 0.1s ease-out;
+  opacity: 0.0;
+  position: absolute;
+  color: white;
+
+}
+
+#selection-screen .instruction-card.active {
+  transition: opacity 0.8s 3.0s ease-out;
+  opacity: 1.0;
+}
+
+#selection-screen .instruction-card h3 {
+  font-size: 2.2em;
+  padding: 33px 0px 0px 0px;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-family: 'museo700', sans-serif;
+}
+
+#selection-screen .instruction-card h3.sub {
+  font-size: 2.0em;
+  font-family: 'museo300', sans-serif;
 }
 
 /* First column of 4x4 grid. */
@@ -141,24 +194,24 @@ h2 div.es {
 /* Second column of 4x4 grid. */
 #selection-screen .video-02,
 #selection-screen .video-06,
-#selection-screen .video-10,
-#selection-screen .video-14 {
+#selection-screen .video-010,
+#selection-screen .video-014 {
   left: 480px;
 }
 
 /* Third column of 4x4 grid. */
 #selection-screen .video-03,
 #selection-screen .video-07,
-#selection-screen .video-11,
-#selection-screen .video-15 {
+#selection-screen .video-011,
+#selection-screen .video-015 {
   left: 960px;
 }
 
 /* Fourth column of 4x4 grid. */
 #selection-screen .video-04,
 #selection-screen .video-08,
-#selection-screen .video-12,
-#selection-screen .video-16 {
+#selection-screen .video-012,
+#selection-screen .video-016 {
   left: 1440px;
 }
 
@@ -175,22 +228,28 @@ h2 div.es {
 #selection-screen .video-06,
 #selection-screen .video-07,
 #selection-screen .video-08 {
-  top: 270px;
+  top: 350px;
 }
+/*#selection-screen .video-05,
+#selection-screen .video-06,
+#selection-screen .video-07,
+#selection-screen .video-08 {
+  top: 270px;
+}*/
 
 /* Third row of 4x4 grid. */
 #selection-screen .video-09,
-#selection-screen .video-10,
-#selection-screen .video-11,
-#selection-screen .video-12 {
+#selection-screen .video-010,
+#selection-screen .video-011,
+#selection-screen .video-012 {
   top: 540px;
 }
 
 /* Fourth row of 4x4 grid. */
-#selection-screen .video-13,
-#selection-screen .video-14,
-#selection-screen .video-15,
-#selection-screen .video-16 {
+#selection-screen .video-013,
+#selection-screen .video-014,
+#selection-screen .video-015,
+#selection-screen .video-016 {
   top: 810px;
 }
 

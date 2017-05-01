@@ -20,6 +20,7 @@ class KioskVideoList extends React.Component {
       componentNumber: props.componentNumber,
       selectedVideo: '0',
       selectedPosition: -1,
+      instructionPosition: -1,
       showVideo: false,
       idleTime: 0,
       screenSaver: 'inactive',
@@ -30,6 +31,8 @@ class KioskVideoList extends React.Component {
 
     this.transEnterTime = 500;
     this.transLeaveTime = 400;
+
+    this.startInstructionCycle();
 
   }
 
@@ -79,7 +82,27 @@ class KioskVideoList extends React.Component {
 
     let vidNums = [];
 
-    for (var i = 0; i < this.props.videos.length; i++) {
+
+/*    vidNums.push(this.props.videos[15].videoNumber);
+    vidNums.push(this.props.videos[14].videoNumber);
+    vidNums.push(this.props.videos[13].videoNumber);
+    vidNums.push(this.props.videos[12].videoNumber);
+    vidNums.push(this.props.videos[5].videoNumber);
+    vidNums.push(this.props.videos[6].videoNumber);
+    vidNums.push(this.props.videos[7].videoNumber);
+    vidNums.push(this.props.videos[8].videoNumber);
+    vidNums.push(this.props.videos[0].videoNumber);
+    vidNums.push(this.props.videos[1].videoNumber);
+    vidNums.push(this.props.videos[2].videoNumber);
+    vidNums.push(this.props.videos[3].videoNumber);
+    vidNums.push(this.props.videos[4].videoNumber);
+    vidNums.push(this.props.videos[9].videoNumber);
+    vidNums.push(this.props.videos[10].videoNumber);
+    vidNums.push(this.props.videos[11].videoNumber);*/
+
+    vidNums = [5,6,7,8,1,2,3,4,9,10,11,12,13,14,15,16];
+
+    /*for (var i = 0; i < this.props.videos.length; i++) {
 
       vidNums.push(this.props.videos[i].videoNumber);
 
@@ -90,15 +113,46 @@ class KioskVideoList extends React.Component {
 
       vidNums = _.shuffle(vidNums);
 
-    }
+    }*/
 
     return vidNums;
+
+  }
+
+  startInstructionCycle() {
+
+    setInterval(() => {
+     /* const index = Math.floor(Math.random() * this.videoOrder.length);
+      this.setState({instructionPosition:this.videoOrder[index]});*/
+
+      const index = Math.floor(Math.random() * 4);
+      this.setState({instructionPosition:this.videoOrder[index]});
+
+    }, 10000);
 
   }
 
   isActiveCard(index) {
 
     if (index == this.state.selectedPosition) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isInstructionCard(index) {
+
+    if (index == this.state.instructionPosition) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isDisabled(index) {
+
+    if (index >= 4) {
       return true;
     } else {
       return false;
@@ -182,13 +236,14 @@ class KioskVideoList extends React.Component {
         position={this.videoOrder[index]}
         video={video}
         isActive={this.isActiveCard(this.videoOrder[index])}
+        isInstruction={this.isInstructionCard(this.videoOrder[index])}
+        isDisabled={this.isDisabled(index)}
       />
     );
 
     return (
       <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'vid-count-' + this.props.videos.length}>
 
-        {/* Background video loop */}
         {
             this.loopBackground() === true
             ?
@@ -202,15 +257,8 @@ class KioskVideoList extends React.Component {
             : null
         }
 
-        {/* Coaches Corner headline title *//* Coaches Corner headline title */}
-        <h1>
-          <div className='en'>Select a Minnesota place name to learn more.</div>
-        </h1>
-
-        {/* Question buttons *//* Question buttons */}
         {videoCards}
 
-        {/* Modal video player *//* Modal video player */}
         <ReactCSSTransitionGroup
               transitionName='player-fade'
               transitionAppear={false}
@@ -233,28 +281,6 @@ class KioskVideoList extends React.Component {
           }
           </ReactCSSTransitionGroup>
 
-        {/* Modal screen saver *//* Modal screen saver */}
-        <ReactCSSTransitionGroup
-              transitionName='player-fade'
-              transitionAppear={false}
-              transitionEnter={this.props.transitions}
-              transitionLeave={this.props.transitions}
-              transitionEnterTimeout={this.transEnterTime}
-              transitionLeaveTimeout={this.transLeaveTime}>
-          {
-          this.state.screenSaver === 'active'
-            ?
-            <div
-              onClick={this.clearScreenSaver.bind(this)}
-              className='screensaver'
-            >
-              <VideoPlayerScreenSaver
-                componentNumber={this.state.componentNumber}
-              />
-            </div>
-            : null
-        }
-        </ReactCSSTransitionGroup>
       </div>
     );
   }

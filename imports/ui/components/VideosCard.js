@@ -26,6 +26,16 @@ class VideoCard extends React.Component {
 
     className += ' video-0' + this.props.position;
 
+    if (this.props.isDisabled) className += ' disabled';
+
+    return className;
+
+  }
+
+  instructionClass() {
+
+    let className = 'instruction-card ' + ((this.props.isInstruction == true) ? 'active' : '');
+
     return className;
 
   }
@@ -36,6 +46,7 @@ class VideoCard extends React.Component {
     const paddedVideoNumber = _.padStart(video.videoNumber, 2, '0');
     const buttonVideoPath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.mp4`;
     const buttonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_dakota.png`;
+    const disbledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
 
     return (
       <div
@@ -46,17 +57,29 @@ class VideoCard extends React.Component {
         id={`video-${paddedVideoNumber}`}
       >
 
-        <img src={buttonImagePath}/>
+        <div className='overlay'>
+        </div>
 
-        <video
-          loop="loop"
-          autoPlay="autoplay"
-        >
-          <source
-            src={buttonVideoPath}
-            type="video/mp4"
-          />
-        </video>
+        <div className={this.instructionClass()}>
+          <h3>Where did these place names come from?</h3>
+          <h3 className='sub'>Touch one to find out.</h3>
+        </div>
+
+        <img src={buttonImagePath} className='dakota' />
+
+        {this.props.isDisabled ? (
+          <img src={disbledImagePath} />
+        ) : (
+          <video
+            loop="loop"
+            autoPlay="autoplay"
+          >
+            <source
+              src={buttonVideoPath}
+              type="video/mp4"
+            />
+          </video>
+        )}
 
         <h2>
           <div className='en'>{video.labelEn}</div>
@@ -74,6 +97,8 @@ VideoCard.propTypes = {
   launchVideoPlayer: React.PropTypes.func,
   position: React.PropTypes.number,
   isActive: React.PropTypes.bool,
+  isInstruction: React.PropTypes.bool,
+  isDisabled: React.PropTypes.bool,
 };
 
 export default VideoCard;
