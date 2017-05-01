@@ -1,42 +1,93 @@
 [{
-	"_id": "byrr4Y3yqjMj35nCA",
-	"componentNumber": "0100",
-	"labelEn": "Why do you like watching videos?",
-	"labelEs": "¿Por qué es importante una dieta balanceada?",
+	"_id": "y9er5omKsRqoRiCDC",
+	"componentNumber": "0001",
+	"labelEn": "Wabasha",
+	"labelEs": "Dakota [Wabasha]",
 	"videoNumber": 1
 },
 {
-	"_id": "rrsC2cAbqnSHN2XJh",
-	"componentNumber": "0100",
-	"labelEn": "What is your basis for video selection?",
-	"labelEs": "¿Qué alimentos son importantes para los atletas?",
+	"_id": "GA6azy5LYengCDj7X",
+	"componentNumber": "0001",
+	"labelEn": "Mendota",
+	"labelEs": "Dakota [Mendota]",
 	"videoNumber": 2
 },
 {
-	"_id": "WQXLem8QXNn7nZStM",
-	"componentNumber": "0100",
-	"labelEn": "What will you do after watching these videos?",
-	"labelEs": "¿Qué debo comer antes de una sesión de ejercicio fuerte?",
+	"_id": "CbdSkyerrAEzaNXTn",
+	"componentNumber": "0001",
+	"labelEn": "Minnehaha",
+	"labelEs": "Dakota [Minnehaha]",
 	"videoNumber": 3
 },
 {
-	"_id": "7tnqM7kqBnaWA7jhP",
-	"componentNumber": "0200",
-	"labelEn": "What is a video selector?",
-	"labelEs": "¿Qué es una conmoción cerebral?",
-	"videoNumber": 1
+	"_id": "MS3wbpYpwqjfSFhPi",
+	"componentNumber": "0001",
+	"labelEn": "Wacouta",
+	"labelEs": "Dakota [Wacouta]",
+	"videoNumber": 4
 },
 {
-	"_id": "xnNm6feMyivHixWgi",
-	"componentNumber": "0200",
-	"labelEn": "What causes a video to be selected?",
-	"labelEs": "¿Qué causa una conmoción cerebral?",
-	"videoNumber": 2
+	"_id": "2ku5XfoGjp9g269sD",
+	"componentNumber": "0001",
+	"labelEn": "Kasota",
+	"labelEs": "Dakota [Kasota]",
+	"videoNumber": 5
 },
 {
-	"_id": "cM8rGoNbo8FqARceg",
-	"componentNumber": "0200",
-	"labelEn": "What are the common types of videos?",
-	"labelEs": "¿Cuáles son los síntomas más comunes de una conmoción cerebral?",
-	"videoNumber": 3
+	"_id": "awqjtRnDdh6tnWJKp",
+	"componentNumber": "0001",
+	"labelEn": "Chanhassen",
+	"labelEs": "Chanhassen",
+	"videoNumber": 6
+},
+{
+	"_id": "YrPFc7pEJuCTvFjCR",
+	"componentNumber": "0001",
+	"videoNumber": 7
+},
+{
+	"_id": "rJBFLPbvXmd3b49M4",
+	"componentNumber": "0001",
+	"videoNumber": 8
+},
+{
+	"_id": "YxaZPGkYDcsKqP4wM",
+	"componentNumber": "0001",
+	"videoNumber": 10
+},
+{
+	"_id": "bumNNfeqE3pBKhP6s",
+	"componentNumber": "0001",
+	"videoNumber": 11
+},
+{
+	"_id": "jW8PLqLbdrPHRpxEC",
+	"componentNumber": "0001",
+	"videoNumber": 9
+},
+{
+	"_id": "jDa6mBFbYcrRMxuhR",
+	"componentNumber": "0001",
+	"videoNumber": 12
+},
+{
+	"_id": "pTfPXKDoS6TJvJP9f",
+	"componentNumber": "0001",
+	"videoNumber": 13
+},
+{
+	"_id": "TRrxEFTjKPkwedXpb",
+	"componentNumber": "0001",
+	"videoNumber": 14
+},
+{
+	"_id": "HM9wAEJPxPDAvoku3",
+	"componentNumber": "0001",
+	"videoNumber": 15
+},
+{
+	"_id": "Fu5HT6BhaaQFKnRpq",
+	"componentNumber": "0001",
+	"videoNumber": 16
 }]
+
