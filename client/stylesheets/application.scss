@@ -102,25 +102,24 @@ h2 div.es {
  */
 #selection-screen .video-button {
 
-/* Trick - Use hardware acceleration */
-  -webkit-transform: translateZ(0);
-   -moz-transform: translateZ(0);
-   -ms-transform: translateZ(0);
-   -o-transform: translateZ(0);
-   transform: translateZ(0);
-   -webkit-backface-visibility: hidden;
-   -moz-backface-visibility: hidden;
-   -ms-backface-visibility: hidden;
-   backface-visibility: hidden;
-   -webkit-perspective: 1000;
-   -moz-perspective: 1000;
-   -ms-perspective: 1000;
-   perspective: 1000;
-   -webkit-transform: translate3d(0, 0, 0);
-   -moz-transform: translate3d(0, 0, 0);
-   -ms-transform: translate3d(0, 0, 0);
-   transform: translate3d(0, 0, 0);
-
+/* Trick - Forces hardware acceleration */
+/*-webkit-transform: translateZ(0);
+ -moz-transform: translateZ(0);
+ -ms-transform: translateZ(0);
+ -o-transform: translateZ(0);
+ transform: translateZ(0);
+ -webkit-backface-visibility: hidden;
+ -moz-backface-visibility: hidden;
+ -ms-backface-visibility: hidden;
+ backface-visibility: hidden;
+ -webkit-perspective: 1000;
+ -moz-perspective: 1000;
+ -ms-perspective: 1000;
+ perspective: 1000;
+ -webkit-transform: translate3d(0, 0, 0);
+ -moz-transform: translate3d(0, 0, 0);
+ -ms-transform: translate3d(0, 0, 0);
+ transform: translate3d(0, 0, 0);*/
 
   background-color: none;
   z-index: 1;
@@ -131,24 +130,23 @@ h2 div.es {
   height: 270px;
   transform-origin: 0% 0%;
 
-  transition: top .45s ease-out, left .45s ease-out, transform .45s ease-out, z-index 0.1s 0.5s;
-
 }
 
 #selection-screen .video-button video {
 
-/*  transition: filter .5s ease-out;
+  transition: filter .5s ease-out;
   -webkit-filter: none;
-  filter: none;*/
+  filter: none;
 
 }
 
 #selection-screen .video-button.active video {
 
-/*  -webkit-filter: blur(1px);
-  filter: blur(1px);
-*/
+  -webkit-filter: blur(2.5px);
+  filter: blur(2.5px);
+
 }
+
 
 #selection-screen .video-button .overlay {
   z-index: 9;
@@ -156,48 +154,21 @@ h2 div.es {
   height: 100%;
   position: absolute;
 
-  box-shadow: 0 0 0 0.5px black inset;
+  box-shadow: 0 0 0 1px black inset;
 
 }
+
+
 
 #selection-screen .video-button:active {
 
-  transform: scale(0.99) translate(0px, 0px);
-  transition: top .02s ease-out, left .02s ease-out, transform .02s ease-out, z-index 0.1s 0.1s;
   transform-origin: 50% 50%;
+  transform: scale(0.99);
+
 }
 
 #selection-screen .video-button.active {
-
-  transition: top .45s ease-out, left .45s ease-out, transform .45s ease-out, z-index 0.01s 0.01s;
-
   transform-origin: 0% 0%;
-
-  transform: scale(4);
-
-  z-index: 2;
-
-  top: 0px;
-  left: 0px;
-
-/* -webkit-box-shadow: 0px 0px 85px 6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 85px 6px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 85px 6px rgba(0,0,0,0.75);
-*/
-}
-
-#selection-screen .video-button img.dakota {
-  width: 480px;
-  height: 270px;
-  position: absolute;
-  transition: opacity 2.5s 9s ease-in;
-  opacity: 0.0;
-  z-index: 2;
-}
-
-#selection-screen .video-button.active img.dakota {
-  transition: opacity 0.1s 1.0s ease-in;
-  opacity: 1.0;
 }
 
 #selection-screen .video-button.disabled {
@@ -234,6 +205,20 @@ h2 div.es {
 #selection-screen .instruction-card h3.sub {
   font-size: 2.0em;
   font-family: 'museo300', sans-serif;
+}
+
+#selection-screen .video-button img.dakota {
+  width: 480px;
+  height: 270px;
+  position: absolute;
+  transition: opacity 2.5s 9s ease-in;
+  opacity: 0.0;
+  z-index: 2;
+}
+
+#selection-screen .video-button.active img.dakota {
+  transition: opacity 0.1s 1.0s ease-in;
+  opacity: 1.0;
 }
 
 /* First column of 4x4 grid. */
@@ -350,13 +335,13 @@ h2 div.es {
 
 .home-button img {
   width: 60px;
-  opacity: 0.5;
+  opacity: 0.75;
   transition: all .1s ease-out;
 }
 
 .home-button:active img {
   transform: scale(0.96);
-  opacity: .75;
+  opacity: 0.9;
 }
 
 .looping-background {

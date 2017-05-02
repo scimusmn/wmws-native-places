@@ -7,6 +7,7 @@ import LoopingBackground from './LoopingBackground';
 import VideoPlayerScreenSaver from './VideoPlayerScreenSaver';
 import logger from '../../modules/logger';
 import _ from 'lodash';
+import TweenMax from 'gsap';
 
 class KioskVideoList extends React.Component {
   constructor(props) {
@@ -20,6 +21,8 @@ class KioskVideoList extends React.Component {
       componentNumber: props.componentNumber,
       selectedVideo: '0',
       selectedPosition: -1,
+      selectedHomeX:-1,
+      selectedHomeY:-1,
       instructionPosition: -1,
       showVideo: false,
       idleTime: 0,
@@ -82,23 +85,22 @@ class KioskVideoList extends React.Component {
 
     let vidNums = [];
 
-
-/*    vidNums.push(this.props.videos[15].videoNumber);
-    vidNums.push(this.props.videos[14].videoNumber);
-    vidNums.push(this.props.videos[13].videoNumber);
-    vidNums.push(this.props.videos[12].videoNumber);
-    vidNums.push(this.props.videos[5].videoNumber);
-    vidNums.push(this.props.videos[6].videoNumber);
-    vidNums.push(this.props.videos[7].videoNumber);
-    vidNums.push(this.props.videos[8].videoNumber);
-    vidNums.push(this.props.videos[0].videoNumber);
-    vidNums.push(this.props.videos[1].videoNumber);
-    vidNums.push(this.props.videos[2].videoNumber);
-    vidNums.push(this.props.videos[3].videoNumber);
-    vidNums.push(this.props.videos[4].videoNumber);
-    vidNums.push(this.props.videos[9].videoNumber);
-    vidNums.push(this.props.videos[10].videoNumber);
-    vidNums.push(this.props.videos[11].videoNumber);*/
+    /*    vidNums.push(this.props.videos[15].videoNumber);
+        vidNums.push(this.props.videos[14].videoNumber);
+        vidNums.push(this.props.videos[13].videoNumber);
+        vidNums.push(this.props.videos[12].videoNumber);
+        vidNums.push(this.props.videos[5].videoNumber);
+        vidNums.push(this.props.videos[6].videoNumber);
+        vidNums.push(this.props.videos[7].videoNumber);
+        vidNums.push(this.props.videos[8].videoNumber);
+        vidNums.push(this.props.videos[0].videoNumber);
+        vidNums.push(this.props.videos[1].videoNumber);
+        vidNums.push(this.props.videos[2].videoNumber);
+        vidNums.push(this.props.videos[3].videoNumber);
+        vidNums.push(this.props.videos[4].videoNumber);
+        vidNums.push(this.props.videos[9].videoNumber);
+        vidNums.push(this.props.videos[10].videoNumber);
+        vidNums.push(this.props.videos[11].videoNumber);*/
 
     vidNums = [5,6,7,8,1,2,3,4,9,10,11,12,13,14,15,16];
 
@@ -122,8 +124,8 @@ class KioskVideoList extends React.Component {
   startInstructionCycle() {
 
     setInterval(() => {
-     /* const index = Math.floor(Math.random() * this.videoOrder.length);
-      this.setState({instructionPosition:this.videoOrder[index]});*/
+      /* const index = Math.floor(Math.random() * this.videoOrder.length);
+       this.setState({instructionPosition:this.videoOrder[index]});*/
 
       const index = Math.floor(Math.random() * 4);
       this.setState({instructionPosition:this.videoOrder[index]});
@@ -162,11 +164,15 @@ class KioskVideoList extends React.Component {
   launchVideoPlayer(e) {
 
     const position = e.currentTarget.getAttribute('data-position');
+    const homeX = parseInt($(e.currentTarget).css('left'));
+    const homeY = parseInt($(e.currentTarget).css('top'));
 
     this.setState({
       playing: true,
       selectedVideo: e.currentTarget.id,
       selectedPosition: position,
+      selectedHomeX: homeX,
+      selectedHomeY: homeY,
       showVideo: true,
       transitioning: true,
     });
@@ -177,6 +183,11 @@ class KioskVideoList extends React.Component {
                   selectedVideo:e.currentTarget.id,
                   position:position,
                   });
+
+    // Transition to fullscreen.
+    const vidBtn = $('.video-button.video-0' + position);
+    TweenMax.to(vidBtn, 0.45, {scale:4, top:0, left:0, ease:Power2.easeOut});
+    TweenMax.set(vidBtn, {zIndex:2});
 
     // Wait for transition
     // to kill display state
@@ -199,7 +210,12 @@ class KioskVideoList extends React.Component {
 
       setTimeout(()=> {
 
-        this.setState({ transitioning: false, selectedPosition:-1 });
+        // Transition back from fullscreen.
+        const vidBtn = $('.video-button.video-0' + this.state.selectedPosition);
+        TweenMax.to(vidBtn, 0.45, {scale:1, top:this.state.selectedHomeY, left:this.state.selectedHomeX, ease:Power2.easeOut});
+        TweenMax.set(vidBtn, {zIndex:1, delay:0.46});
+
+        this.setState({ transitioning: false, selectedPosition:-1, selectedHomeX:-1, selectedHomeY:-1 });
 
       }, 200);
 

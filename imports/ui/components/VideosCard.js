@@ -46,6 +46,7 @@ class VideoCard extends React.Component {
     const paddedVideoNumber = _.padStart(video.videoNumber, 2, '0');
     const buttonVideoPath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.mp4`;
     const buttonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_dakota.png`;
+    // const whiteButtonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}.png`;
     const disbledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
 
     return (
