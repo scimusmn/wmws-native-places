@@ -61,11 +61,16 @@ class KioskVideoList extends React.Component {
         screenSaver: 'active',
       });
 
+      // Normally we'd display screensaver here,
+      // but since this does not have a screensaver state,
+      // we will refresh the page.
+      // TODO: Is this how we want to hand screensaver?
+      location.reload();
+
     }
   }
 
   resetScreenSaverTimer() {
-    console.log('Resetting the screensaver timer');
     this.setState({
       idleTime: 0,
       screenSaver: 'inactive',
