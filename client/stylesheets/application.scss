@@ -28,6 +28,14 @@ body {
   cursor: none;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
 .noselect {
 }
 
@@ -313,17 +321,29 @@ h2 div.es {
   text-align: center;
   margin: 0;
   padding: 42px 85px 42px 41px;
+
+  /* Hide cursor */
+  cursor: none;
+
 }
 
 .home-button img {
   width: 60px;
   opacity: 0.75;
   transition: all .1s ease-out;
+
+  /* Hide cursor */
+  cursor: none;
+
 }
 
 .home-button:active img {
   transform: scale(0.96);
   opacity: 0.9;
+
+  /* Hide cursor */
+  cursor: none;
+
 }
 
 .looping-background {
