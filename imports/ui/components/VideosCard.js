@@ -13,6 +13,19 @@ class VideoCard extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    // Pause playback when Fullscreen video is playing
+    if (nextProps.isDisabled) return;
+
+    if (nextProps.playing) {
+      this.refs.vidRef.pause();
+    } else {
+      this.refs.vidRef.play();
+    }
+
+  }
+
   handleVideoSelect(e) {
 
     // Send parent component the video launch event
@@ -46,6 +59,7 @@ class VideoCard extends React.Component {
     const paddedVideoNumber = _.padStart(video.videoNumber, 2, '0');
     const buttonVideoPath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.mp4`;
     const buttonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_dakota.png`;
+
     // const whiteButtonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}.png`;
     const disbledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
 
@@ -72,12 +86,13 @@ class VideoCard extends React.Component {
           <img src={disbledImagePath} />
         ) : (
           <video
-            loop="loop"
-            autoPlay="autoplay"
+            loop='loop'
+            ref='vidRef'
+            autoPlay='autoplay'
           >
             <source
               src={buttonVideoPath}
-              type="video/mp4"
+              type='video/mp4'
             />
           </video>
         )}
