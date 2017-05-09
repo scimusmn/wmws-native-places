@@ -90,24 +90,7 @@ class KioskVideoList extends React.Component {
 
     let vidNums = [];
 
-    /*    vidNums.push(this.props.videos[15].videoNumber);
-        vidNums.push(this.props.videos[14].videoNumber);
-        vidNums.push(this.props.videos[13].videoNumber);
-        vidNums.push(this.props.videos[12].videoNumber);
-        vidNums.push(this.props.videos[5].videoNumber);
-        vidNums.push(this.props.videos[6].videoNumber);
-        vidNums.push(this.props.videos[7].videoNumber);
-        vidNums.push(this.props.videos[8].videoNumber);
-        vidNums.push(this.props.videos[0].videoNumber);
-        vidNums.push(this.props.videos[1].videoNumber);
-        vidNums.push(this.props.videos[2].videoNumber);
-        vidNums.push(this.props.videos[3].videoNumber);
-        vidNums.push(this.props.videos[4].videoNumber);
-        vidNums.push(this.props.videos[9].videoNumber);
-        vidNums.push(this.props.videos[10].videoNumber);
-        vidNums.push(this.props.videos[11].videoNumber);*/
-
-    vidNums = [5,6,7,8,1,2,3,4,9,10,11,12,13,14,15,16];
+    vidNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
     /*for (var i = 0; i < this.props.videos.length; i++) {
 
@@ -132,7 +115,7 @@ class KioskVideoList extends React.Component {
       /* const index = Math.floor(Math.random() * this.videoOrder.length);
        this.setState({instructionPosition:this.videoOrder[index]});*/
 
-      const index = Math.floor(Math.random() * 4);
+      const index = Math.floor(Math.random() * 8);
       this.setState({instructionPosition:this.videoOrder[index]});
 
     }, 10000);
@@ -159,11 +142,14 @@ class KioskVideoList extends React.Component {
 
   isDisabled(index) {
 
-    if (index >= 4) {
+    /*if (index >= 4) {
       return true;
     } else {
       return false;
-    }
+    }*/
+
+    return false;
+
   }
 
   launchVideoPlayer(e) {
@@ -188,6 +174,9 @@ class KioskVideoList extends React.Component {
                   selectedVideo:e.currentTarget.id,
                   position:position,
                   });
+
+    // Pause main menu videos
+
 
     // Transition to fullscreen.
     const vidBtn = $('.video-button.video-0' + position);

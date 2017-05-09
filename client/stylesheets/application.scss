@@ -146,7 +146,7 @@ h2 div.es {
   height: 100%;
   position: absolute;
 
-  box-shadow: 0 0 0 0.5px black inset;
+  box-shadow: 0 0 0 3px white inset;
 
 }
 
@@ -252,18 +252,22 @@ h2 div.es {
 }
 
 /* Second row of 4x4 grid. */
+/*PROTOTYPE CENTERED ROW
 #selection-screen .video-05,
 #selection-screen .video-06,
 #selection-screen .video-07,
 #selection-screen .video-08 {
   top: 350px;
 }
-/*#selection-screen .video-05,
+*/
+
+/* Second row of 4x4 grid. */
+#selection-screen .video-05,
 #selection-screen .video-06,
 #selection-screen .video-07,
 #selection-screen .video-08 {
   top: 270px;
-}*/
+}
 
 /* Third row of 4x4 grid. */
 #selection-screen .video-09,
