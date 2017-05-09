@@ -92,7 +92,8 @@ class KioskVideoList extends React.Component {
 
     vidNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
 
-    /*for (var i = 0; i < this.props.videos.length; i++) {
+    /*
+    for (var i = 0; i < this.props.videos.length; i++) {
 
       vidNums.push(this.props.videos[i].videoNumber);
 
@@ -103,7 +104,8 @@ class KioskVideoList extends React.Component {
 
       vidNums = _.shuffle(vidNums);
 
-    }*/
+    }
+    */
 
     return vidNums;
 
