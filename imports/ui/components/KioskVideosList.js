@@ -150,6 +150,12 @@ class KioskVideoList extends React.Component {
       return false;
     }*/
 
+    /*
+    if (index % 4 == 0){
+      return true;
+    }
+    */
+
     return false;
 
   }
@@ -254,7 +260,7 @@ class KioskVideoList extends React.Component {
     );
 
     return (
-      <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'vid-count-' + this.props.videos.length}>
+      <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'map-cctv vid-count-' + this.props.videos.length}>
 
         {
             this.loopBackground() === true

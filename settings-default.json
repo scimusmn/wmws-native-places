@@ -1,7 +1,14 @@
 {
   "public": {
     "screenSaverTimeout": 300,
-    "installPath": "/usr/local/src/sports-coaches-corners"
+    "installPath": "/usr/local/src/wmws-native-places",
+    "logger": {
+      "componentId": "wmws-native-places",
+      "interface": "touchscreen",
+      "floor": "4",
+      "latitude": "44.942553",
+      "longitude": "-93.098689"
+    }
   },
   "private": {
     "awsLocalBin": "/usr/local/bin/aws",
