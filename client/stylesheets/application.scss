@@ -215,7 +215,7 @@ h2 div.es {
 #selection-screen .video-01,
 #selection-screen .video-05,
 #selection-screen .video-09,
-#selection-screen .video-13 {
+#selection-screen .video-013 {
   left: 0px;
 }
 
@@ -294,14 +294,85 @@ h2 div.es {
  */
 .map-cctv {
 
-  .video-button,
-  .video-button video,
-  .video-button img,
-  .video-button div  {
+    .video-button,
+    .video-button video,
+    .video-button img,
+    .video-button div  {
 
       width: 336px !important;
       height: 189px !important;
 
+    }
+
+    .video-button h3 {
+      font-size: 1.1em !important;
+    }
+
+    /* First column of 3x5 grid. */
+    .video-01,
+    .video-04,
+    .video-07,
+    .video-010,
+    .video-013 {
+      left: 765px !important;
+    }
+
+    /* Second column of 3x5 grid. */
+    .video-02,
+    .video-05,
+    .video-08,
+    .video-011,
+    .video-014 {
+      left: 1101px !important;
+    }
+
+    /* Third column of 3x5 grid. */
+    .video-03,
+    .video-06,
+    .video-09,
+    .video-012,
+    .video-015 {
+      left: 1437px !important;
+    }
+
+    /* First row of 3x5 grid. */
+    .video-01,
+    .video-02,
+    .video-03 {
+      top: 66px !important;
+    }
+
+    /* Second row of 3x5 grid. */
+    .video-04,
+    .video-05,
+    .video-06 {
+      top: 255px !important;
+    }
+
+    /* Third row of 3x5 grid. */
+    .video-07,
+    .video-08,
+    .video-09 {
+      top: 444px !important;
+    }
+
+    /* Fourth row of 3x5 grid. */
+    .video-010,
+    .video-011,
+    .video-012 {
+      top: 633px !important;
+    }
+
+    /* Fifth row of 3x5 grid. */
+    .video-013,
+    .video-014,
+    .video-015 {
+      top: 822px !important;
+    }
+
+    .video-016 {
+      top: -999px !important;
+      left: -999px !important;
     }
 
 }

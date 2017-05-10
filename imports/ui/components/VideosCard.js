@@ -21,7 +21,7 @@ class VideoCard extends React.Component {
     if (nextProps.playing) {
       this.refs.vidRef.pause();
     } else {
-      this.refs.vidRef.play();
+      // this.refs.vidRef.play();
     }
 
   }
@@ -88,7 +88,6 @@ class VideoCard extends React.Component {
           <video
             loop='loop'
             ref='vidRef'
-            autoPlay='autoplay'
           >
             <source
               src={buttonVideoPath}
