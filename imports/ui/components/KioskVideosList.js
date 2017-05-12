@@ -165,6 +165,7 @@ class KioskVideoList extends React.Component {
     const position = e.currentTarget.getAttribute('data-position');
     const homeX = parseInt($(e.currentTarget).css('left'));
     const homeY = parseInt($(e.currentTarget).css('top'));
+    const videoLabel = $(e.currentTarget).find('h2 .en').html();
 
     this.setState({
       playing: true,
@@ -181,10 +182,8 @@ class KioskVideoList extends React.Component {
                   kiosk: this.props.location.pathname,
                   selectedVideo:e.currentTarget.id,
                   position:position,
-                  });
-
-    // Pause main menu videos
-
+                  videoLabel: videoLabel,
+                });
 
     // Transition to fullscreen.
     const vidBtn = $('.video-button.video-0' + position);

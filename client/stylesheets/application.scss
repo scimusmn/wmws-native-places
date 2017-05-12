@@ -294,6 +294,9 @@ h2 div.es {
  */
 .map-cctv {
 
+  height: 1080px;
+  background-color: #ccc !important;
+
     .video-button,
     .video-button video,
     .video-button img,
@@ -301,11 +304,13 @@ h2 div.es {
 
       width: 336px !important;
       height: 189px !important;
-
+      /*padding: 15px !important;*/
+      /*clip-path: inset(0px 24px 0px 24px) !important;*/
     }
 
     .video-button h3 {
-      font-size: 1.1em !important;
+      font-size: 1.4em !important;
+      padding: 15px 0px 0px 0px !important;
     }
 
     /* First column of 3x5 grid. */
