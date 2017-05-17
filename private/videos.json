@@ -24,7 +24,7 @@
 	"componentNumber": "0001",
 	"labelEn": "Wacouta",
 	"labelEs": "Dakota [Wacouta]",
-	"videoNumber": 4
+	"videoNumber": 17
 },
 {
 	"_id": "2ku5XfoGjp9g269sD",
@@ -37,57 +37,84 @@
 	"_id": "awqjtRnDdh6tnWJKp",
 	"componentNumber": "0001",
 	"labelEn": "Chanhassen",
-	"labelEs": "Chanhassen",
+	"labelEs": "Dakota [Chanhassen]",
 	"videoNumber": 6
 },
 {
 	"_id": "YrPFc7pEJuCTvFjCR",
 	"componentNumber": "0001",
-	"videoNumber": 7
+	"videoNumber": 7,
+	"labelEn": "Kandiyohi",
+	"labelEs": "Dakota [Kandiyohi]"
 },
 {
 	"_id": "rJBFLPbvXmd3b49M4",
 	"componentNumber": "0001",
-	"videoNumber": 8
+	"videoNumber": 8,
+	"labelEn": "Anoka",
+	"labelEs": "Dakota [Anoka]"
 },
 {
 	"_id": "YxaZPGkYDcsKqP4wM",
 	"componentNumber": "0001",
-	"videoNumber": 10
+	"videoNumber": 10,
+	"labelEn": "Shakopee",
+	"labelEs": "Dakota [Shakopee]"
 },
 {
 	"_id": "bumNNfeqE3pBKhP6s",
 	"componentNumber": "0001",
-	"videoNumber": 11
+	"videoNumber": 11,
+	"labelEn": "Minnesota",
+	"labelEs": "Dakota [Minnesota]"
 },
 {
 	"_id": "jW8PLqLbdrPHRpxEC",
 	"componentNumber": "0001",
-	"videoNumber": 9
+	"videoNumber": 9,
+	"labelEn": "Mankato",
+	"labelEs": "Dakota [Mankato]"
 },
 {
 	"_id": "jDa6mBFbYcrRMxuhR",
 	"componentNumber": "0001",
-	"videoNumber": 12
+	"videoNumber": 12,
+	"labelEn": "Waconia",
+	"labelEs": "Dakota [Waconia]"
 },
 {
 	"_id": "pTfPXKDoS6TJvJP9f",
 	"componentNumber": "0001",
-	"videoNumber": 13
+	"videoNumber": 4,
+	"labelEn": "Wayzata",
+	"labelEs": "Dakota [Wayzata]"
 },
 {
 	"_id": "TRrxEFTjKPkwedXpb",
 	"componentNumber": "0001",
-	"videoNumber": 14
+	"videoNumber": 14,
+	"labelEn": "Owatonna",
+	"labelEs": "Dakota [Owatonna]"
 },
 {
 	"_id": "HM9wAEJPxPDAvoku3",
 	"componentNumber": "0001",
-	"videoNumber": 15
+	"videoNumber": 15,
+	"labelEn": "Minnetonka",
+	"labelEs": "Dakota [Minnetonka]"
 },
 {
 	"_id": "Fu5HT6BhaaQFKnRpq",
 	"componentNumber": "0001",
-	"videoNumber": 16
+	"videoNumber": 16,
+	"labelEn": "Lake Calhoun",
+	"labelEs": "Dakota [Lake Calhoun]"
+},
+{
+	"_id": "78WzTcuJFApufasuF",
+	"componentNumber": "0001",
+	"labelEn": "Chaska",
+	"labelEs": "Dakota [Chaska]",
+	"videoNumber": 13
 }]
 
