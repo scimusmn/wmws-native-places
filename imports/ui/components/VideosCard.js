@@ -88,6 +88,7 @@ class VideoCard extends React.Component {
           <video
             loop='loop'
             ref='vidRef'
+            muted='muted'
             autoPlay='autoplay'
           >
             <source

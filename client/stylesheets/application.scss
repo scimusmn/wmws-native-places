@@ -26,6 +26,7 @@ body {
 
   /* Hide cursor */
   cursor: none;
+
 }
 
 img {
@@ -46,6 +47,10 @@ img {
 .NewVideo {
   background-color: #FFF;
   padding: 0 40px 40px 40px;
+
+  /* Hide cursor */
+  /*cursor: default !important;*/
+
 }
 
 /**
@@ -252,16 +257,6 @@ h2 div.es {
 }
 
 /* Second row of 4x4 grid. */
-/*PROTOTYPE CENTERED ROW
-#selection-screen .video-05,
-#selection-screen .video-06,
-#selection-screen .video-07,
-#selection-screen .video-08 {
-  top: 350px;
-}
-*/
-
-/* Second row of 4x4 grid. */
 #selection-screen .video-05,
 #selection-screen .video-06,
 #selection-screen .video-07,
@@ -283,6 +278,22 @@ h2 div.es {
 #selection-screen .video-015,
 #selection-screen .video-016 {
   top: 810px;
+}
+
+/* TEMP - PROTOTYPE */
+/* First row of 4x4 grid. */
+#selection-screen .video-01,
+#selection-screen .video-02,
+#selection-screen .video-03,
+#selection-screen .video-04 {
+  top: 530px;
+}
+/* Second row of 4x4 grid. */
+#selection-screen .video-05,
+#selection-screen .video-06,
+#selection-screen .video-07,
+#selection-screen .video-08 {
+  top: 260px;
 }
 
 /**

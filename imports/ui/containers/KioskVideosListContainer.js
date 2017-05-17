@@ -11,7 +11,7 @@ const composer = ({ params }, onData) => {
   const componentsSub = Meteor.subscribe('exhibitComponents.view', params.componentNumber);
 
   if (videosSub.ready() && componentsSub.ready()) {
-    const videos = Videos.find().fetch();
+    const videos = Videos.find({}, {sort: {videoNumber: 1}, limit: 16}).fetch();
     const playing = false;
     const componentNumber = params.componentNumber;
     const component = ExhibitComponents.findOne();
