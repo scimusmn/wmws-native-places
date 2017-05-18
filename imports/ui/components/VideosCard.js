@@ -11,6 +11,7 @@ class VideoCard extends React.Component {
       video: props.video,
       playing: false,
     };
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -21,7 +22,16 @@ class VideoCard extends React.Component {
     if (nextProps.playing) {
       this.refs.vidRef.pause();
     } else {
-      this.refs.vidRef.play();
+
+      const vidDuration = this.refs.vidRef.duration;
+      // console.log('vid duration:', this.props.video.videoNumber, vidDuration);
+
+      // If video duration is below
+      // 6 seconds, assume it does
+      // not need to be played.
+      if (vidDuration > 6.0) {
+        this.refs.vidRef.play();
+      }
     }
 
   }
