@@ -77,6 +77,7 @@ class VideoCard extends React.Component {
 
         <div className={this.instructionClass()}>
           <h3>Where did these place names come from?</h3>
+          <img src='/images/horizontal-rule-small.png' className='h-break' />
           <h3 className='sub'>Touch one to find out.</h3>
         </div>
 

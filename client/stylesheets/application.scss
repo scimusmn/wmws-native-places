@@ -189,15 +189,20 @@ h2 div.es {
   opacity: 1.0;
 }
 
+.instruction-card .h-break {
+  padding-top: 13px;
+}
+
 #selection-screen .instruction-card h3 {
   font-size: 2.2em;
-  padding: 33px 0px 0px 0px;
+  padding: 22px 0px 0px 0px;
   margin-left: 50px;
   margin-right: 50px;
   font-family: 'museo700', sans-serif;
 }
 
 #selection-screen .instruction-card h3.sub {
+  padding: 5px 0px 0px 0px;
   font-size: 2.0em;
   font-family: 'museo300', sans-serif;
 }
