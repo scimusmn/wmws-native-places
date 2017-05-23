@@ -24,14 +24,13 @@ class VideoCard extends React.Component {
     } else {
 
       const vidDuration = this.refs.vidRef.duration;
-      // console.log('vid duration:', this.props.video.videoNumber, vidDuration);
 
       // If video duration is below
-      // 6 seconds, assume it does
-      // not need to be played.
+      // 6 seconds, do not play.
       if (vidDuration > 6.0) {
         this.refs.vidRef.play();
       }
+
     }
 
   }
@@ -70,8 +69,7 @@ class VideoCard extends React.Component {
     const buttonVideoPath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.mp4`;
     const buttonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_dakota.png`;
 
-    // const whiteButtonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}.png`;
-    const disbledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
+    const disabledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
 
     return (
       <div
@@ -94,7 +92,7 @@ class VideoCard extends React.Component {
         <img src={buttonImagePath} className='dakota' />
 
         {this.props.isDisabled ? (
-          <img src={disbledImagePath} />
+          <img src={disabledImagePath} />
         ) : (
           <video
             loop='loop'

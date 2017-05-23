@@ -152,6 +152,12 @@ class KioskVideoList extends React.Component {
       return false;
     }
 
+    /*
+    if (index % 4 == 0){
+      return true;
+    }
+    */
+
     return false;
 
   }
@@ -161,6 +167,7 @@ class KioskVideoList extends React.Component {
     const position = e.currentTarget.getAttribute('data-position');
     const homeX = parseInt($(e.currentTarget).css('left'));
     const homeY = parseInt($(e.currentTarget).css('top'));
+    const videoLabel = $(e.currentTarget).find('h2 .en').html();
 
     this.setState({
       playing: true,
@@ -177,10 +184,8 @@ class KioskVideoList extends React.Component {
                   kiosk: this.props.location.pathname,
                   selectedVideo:e.currentTarget.id,
                   position:position,
-                  });
-
-    // Pause main menu videos
-
+                  videoLabel: videoLabel,
+                });
 
     // Transition to fullscreen.
     const vidBtn = $('.video-button.video-0' + position);
@@ -256,7 +261,7 @@ class KioskVideoList extends React.Component {
     );
 
     return (
-      <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'vid-count-' + this.props.videos.length}>
+      <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'map-cctv vid-count-' + this.props.videos.length}>
 
         {
             this.loopBackground() === true
