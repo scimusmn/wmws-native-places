@@ -111,6 +111,21 @@ h2 div.es {
 }
 
 /**
+ * MN Map
+ */
+ .state-outline {
+  width: 300px;
+ }
+.state-outline {
+  .cls-1{
+    fill:rgba(125,125,125,0.3);
+    stroke:rgba(125,125,125,0.4);
+    stroke-miterlimit:10;
+    stroke-width:4px;
+  }
+}
+
+/**
  * Selection screen - Button positions
  */
 #selection-screen .video-button {
@@ -291,14 +306,14 @@ h2 div.es {
 #selection-screen .video-02,
 #selection-screen .video-03,
 #selection-screen .video-04 {
-  top: 530px;
+  top: 730px;
 }
 /* Second row of 4x4 grid. */
 #selection-screen .video-05,
 #selection-screen .video-06,
 #selection-screen .video-07,
 #selection-screen .video-08 {
-  top: 260px;
+  top: 460px;
 }
 
 /**

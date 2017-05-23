@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import VideoCard from './VideosCard';
 import VideoPlayer from './VideoPlayer';
 import LoopingBackground from './LoopingBackground';
+import StateOutline from './StateOutline';
 import VideoPlayerScreenSaver from './VideoPlayerScreenSaver';
 import logger from '../../modules/logger';
 import _ from 'lodash';
@@ -271,6 +272,8 @@ class KioskVideoList extends React.Component {
         }
 
         {videoCards}
+
+        <StateOutline></StateOutline>
 
         <ReactCSSTransitionGroup
               transitionName='player-fade'
