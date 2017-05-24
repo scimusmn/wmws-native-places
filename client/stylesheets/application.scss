@@ -127,7 +127,7 @@ h2 div.es {
 }
 #selection-screen {
   height: 1080px;
-  background-color: #cfcfcf !important;
+  background-color: #dfdfdf !important;
 }
 
 /**
@@ -172,8 +172,8 @@ h2 div.es {
   height: 100%;
   position: absolute;
 
-  box-shadow: 0 0 0 3px white inset;
-
+/*  box-shadow: 0 0 0 3px white inset;
+*/
 }
 
 #selection-screen .video-button:active {
@@ -242,8 +242,8 @@ h2 div.es {
   opacity: 1.0;
 }
 
-$clip-amount: 61px;
-$grid-start-left: calc(474px - #{$clip-amount});
+$clip-amount: 60px;
+$grid-start-left: calc(476px - #{$clip-amount});
 $grid-start-top: 0px;
 $cell-width: calc(480px - (#{$clip-amount}*2));
 $cell-height: 270px;
@@ -255,8 +255,13 @@ $cell-height: 270px;
 .video-button div  {
 
   transition: clip-path 0.2s ease-in;
-  clip-path: inset(0px $clip-amount 0px $clip-amount);
+  clip-path: inset(3px calc(3px + #{$clip-amount}) 3px calc(3px + #{$clip-amount}) round 14px 14px);
 
+}
+
+.video-button {
+  /*outline:33px solid #68ae08;*/
+  /*box-shadow: 0 0 0 30px green inset;*/
 }
 
 .video-button.active,
