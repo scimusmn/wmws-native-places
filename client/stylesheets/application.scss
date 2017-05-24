@@ -242,21 +242,30 @@ h2 div.es {
   opacity: 1.0;
 }
 
-$grid-start-left: 240px;
+$clip-amount: 61px;
+$grid-start-left: calc(474px - #{$clip-amount});
 $grid-start-top: 0px;
-$cell-width: 480px;
+$cell-width: calc(480px - (#{$clip-amount}*2));
 $cell-height: 270px;
-$clip-amount: 40px;
+
 
 .video-button,
 .video-button video,
 .video-button img,
 .video-button div  {
-/*
-  width: 336px !important;
-  height: 189px !important;*/
-  /*padding: 15px !important;*/
-  /*clip-path: inset(0px 24px 0px 24px) !important;*/
+
+  transition: clip-path 0.2s ease-in;
+  clip-path: inset(0px $clip-amount 0px $clip-amount);
+
+}
+
+.video-button.active,
+.video-button.active video,
+.video-button.active img,
+.video-button.active div  {
+
+  clip-path: inset(0px 0px 0px 0px);
+
 }
 
 /* First column of 4x4 grid. */
