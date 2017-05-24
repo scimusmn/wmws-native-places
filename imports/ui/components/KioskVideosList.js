@@ -91,23 +91,18 @@ class KioskVideoList extends React.Component {
 
     let vidNums = [];
 
-    // vidNums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-
-    vidNums = [1,3,2,11,5,9,7,8,6,10,4,12,13,14,15,16];
-
     for (var i = 0; i < this.props.videos.length; i++) {
 
-      // vidNums.push(this.props.videos[i].videoNumber);
-      console.log(this.props.videos[i]);
+      vidNums.push(this.props.videos[i].videoNumber);
+
     }
-/*
+
     // Shuffle video order
     if (shuffle) {
 
       vidNums = _.shuffle(vidNums);
 
     }
-    */
 
     return vidNums;
 
@@ -116,11 +111,9 @@ class KioskVideoList extends React.Component {
   startInstructionCycle() {
 
     setInterval(() => {
-      /* const index = Math.floor(Math.random() * this.videoOrder.length);
-       this.setState({instructionPosition:this.videoOrder[index]});*/
 
-      const index = Math.floor(Math.random() * 8);
-      this.setState({instructionPosition:this.videoOrder[index]});
+       const index = Math.floor(Math.random() * this.videoOrder.length);
+       this.setState({instructionPosition:this.videoOrder[index]});
 
     }, 10000);
 
@@ -146,17 +139,11 @@ class KioskVideoList extends React.Component {
 
   isDisabled(index) {
 
-    if (index > 8) {
+    if (index > 16) {
       return true;
     } else {
       return false;
     }
-
-    /*
-    if (index % 4 == 0){
-      return true;
-    }
-    */
 
     return false;
 
