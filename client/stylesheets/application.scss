@@ -2,6 +2,7 @@
 @import "base/animations";
 @import "base/forms";
 @import "base/fonts";
+@import "base/glow";
 
 @import "module/Loading";
 @import "module/Login";
@@ -91,22 +92,37 @@ h1 div.es {
 .video-button h2 {
   position: absolute;
   bottom: 3px;
+  left: 0px;
+  margin-bottom: 0px;
+  z-index: 2;
 }
 
 h2 div.en,
 h2 div.es {
-  color: white;
+  color: rgba(255,255,255,0.85);
 
-  margin: 0 0 0 20px;
+  margin: 0px;
   line-height: 33px;
   font-size: 34px;
+  margin: 0 0 0 0;
+  padding: 4px;
+  padding-left: 74px;
+  line-height: 29px;
+  font-size: 18px;
   letter-spacing: 0.025em;
 
-  display: none;
+  background: rgba(0,0,0,0.99);
+  background: linear-gradient(to right, rgba(0,0,0,0.99) 0%, rgba(0,0,0,0.77) 22%, rgba(0,0,0,0.0) 25%);
+
+  font-family: 'Verdana' !important;
+  width: 480px;
+
+  text-shadow:1px 1px red,-1px -1px green, -1px 1px gray, 1px -1px blue;
+
+  /*display: none;*/
 }
 
 h2 div.es {
-  margin: 5px 20px 0 20px;
   display: none;
 }
 
@@ -127,7 +143,12 @@ h2 div.es {
 }
 #selection-screen {
   height: 1080px;
-  background-color: #dfdfdf !important;
+  background-color: #444;
+
+  background-image: url('/images/pattern-tooth.png');
+  background-repeat: repeat-x;
+  background-position: bottom;
+
 }
 
 /**
@@ -251,23 +272,16 @@ $cell-height: 270px;
 
 .video-button,
 .video-button video,
-.video-button img,
-.video-button div  {
+.video-button img  {
 
   transition: clip-path 0.2s ease-in;
-  clip-path: inset(3px calc(3px + #{$clip-amount}) 3px calc(3px + #{$clip-amount}) round 14px 14px);
+  clip-path: inset(3px calc(3px + #{$clip-amount}) 3px calc(3px + #{$clip-amount}) round 9px 9px);
 
-}
-
-.video-button {
-  /*outline:33px solid #68ae08;*/
-  /*box-shadow: 0 0 0 30px green inset;*/
 }
 
 .video-button.active,
 .video-button.active video,
-.video-button.active img,
-.video-button.active div  {
+.video-button.active img  {
 
   clip-path: inset(0px 0px 0px 0px);
 
@@ -419,3 +433,38 @@ $cell-height: 270px;
   height: 1080px;
   z-index: 4;
 }
+
+/* CRT Scan Lines */
+$screen-background:#121010;
+
+#selection-screen .scan-lines {
+  background:$screen-background;
+  overflow:hidden;
+  &::after{
+    content:" ";
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background:transparentize($screen-background,0.9);
+    opacity:0;
+    z-index:2;
+    pointer-events:none;
+  }
+  &::before{
+    content:" ";
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background:linear-gradient(transparentize($screen-background,1) 50%, transparentize(darken($screen-background,10),0.75) 50%), linear-gradient(90deg,transparentize(#ff0000,0.94),transparentize(#00ff00,0.98),transparentize(#0000ff,0.94));
+    z-index:2;
+    background-size:100% 2px, 3px 100%;
+    pointer-events:none;
+  }
+}
+

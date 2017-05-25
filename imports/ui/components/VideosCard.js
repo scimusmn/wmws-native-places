@@ -46,7 +46,7 @@ class VideoCard extends React.Component {
 
     let className = 'video-button ' + ((this.props.isActive == true) ? 'active' : '');
 
-    className += ' video-0' + this.props.position;
+    className += ' scan-lines video-0' + this.props.position;
 
     if (this.props.isDisabled) className += ' disabled';
 
@@ -71,6 +71,8 @@ class VideoCard extends React.Component {
 
     const disabledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
 
+    const paddedPosition = _.padStart(this.props.position, 2, '0');
+
     return (
       <div
         onClick={this.handleVideoSelect.bind(this)}
@@ -80,25 +82,26 @@ class VideoCard extends React.Component {
         id={`video-${paddedVideoNumber}`}
       >
 
-        <div className='overlay'>
-        </div>
+        <img src={buttonImagePath} className='dakota' />
+
+        <h2>
+          <div className='en'>{paddedPosition}</div>
+        </h2>
 
         <div className={this.instructionClass()}>
           <h3>Where did these place names come from?</h3>
-          <img src='/images/horizontal-rule-small.png' className='h-break' />
           <h3 className='sub'>Touch one to find out.</h3>
         </div>
 
-        <img src={buttonImagePath} className='dakota' />
+        <div className='overlay'>
+        </div>
 
         {this.props.isDisabled ? (
-          <img src={disabledImagePath} />
+          <img src={disbledImagePath} />
         ) : (
           <video
             loop='loop'
             ref='vidRef'
-            muted='muted'
-            autoPlay='autoplay'
           >
             <source
               src={buttonVideoPath}
@@ -107,10 +110,6 @@ class VideoCard extends React.Component {
           </video>
         )}
 
-        <h2>
-          <div className='en'>{video.labelEn}</div>
-          <div className='es'>{video.labelEs}</div>
-        </h2>
       </div>
     );
   }
