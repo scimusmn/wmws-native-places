@@ -46,7 +46,9 @@ class VideoCard extends React.Component {
 
     let className = 'video-button ' + ((this.props.isActive == true) ? 'active' : '');
 
-    className += ' scan-lines video-0' + this.props.position;
+    className += ((this.props.isFeatured == true) ? 'featured' : '');
+
+    className += ' scanlines video-0' + this.props.position;
 
     if (this.props.isDisabled) className += ' disabled';
 
@@ -86,6 +88,7 @@ class VideoCard extends React.Component {
 
         <h2>
           <div className='en'>{paddedPosition}</div>
+          <div className='es'>{video.labelEs}</div>
         </h2>
 
         <div className={this.instructionClass()}>
@@ -123,6 +126,7 @@ VideoCard.propTypes = {
   position: React.PropTypes.number,
   isActive: React.PropTypes.bool,
   isInstruction: React.PropTypes.bool,
+  isFeatured: React.PropTypes.bool,
   isDisabled: React.PropTypes.bool,
 };
 

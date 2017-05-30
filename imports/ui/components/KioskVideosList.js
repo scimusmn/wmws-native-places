@@ -25,6 +25,8 @@ class KioskVideoList extends React.Component {
       selectedHomeX:-1,
       selectedHomeY:-1,
       instructionPosition: -1,
+      featuredPosition: -1,
+      featuredLabel: 'Anoka',
       showVideo: false,
       idleTime: 0,
       screenSaver: 'inactive',
@@ -36,7 +38,8 @@ class KioskVideoList extends React.Component {
     this.transEnterTime = 700;
     this.transLeaveTime = 500;
 
-    this.startInstructionCycle();
+    // this.startInstructionCycle();
+    this.startFeaturedCycle();
 
   }
 
@@ -112,10 +115,39 @@ class KioskVideoList extends React.Component {
 
     setInterval(() => {
 
-       const index = Math.floor(Math.random() * this.videoOrder.length);
-       this.setState({instructionPosition:this.videoOrder[index]});
+      const index = Math.floor(Math.random() * this.videoOrder.length);
+      this.setState({instructionPosition:this.videoOrder[index]});
 
     }, 10000);
+
+  }
+
+  startFeaturedCycle() {
+
+    setInterval(() => {
+
+      let pos = this.state.featuredPosition + 1;
+      if (pos > 16 || pos <= 0) pos = 1;
+      this.setState({featuredPosition:pos});
+
+      // Send signal to map to update
+      for (var i = 0; i < this.videoOrder.length; i++) {
+
+        if (this.videoOrder[i] == this.state.featuredPosition) {
+
+          const label = this.props.videos[i].labelEn;
+          /*$('state-outline circle').removeClass('featured');
+          $('state-outline #' + featuredLabel).addClass('featured');*/
+          console.log('featuredLabel', label);
+          this.setState({featuredLabel:label});
+
+          break;
+
+        }
+
+      }
+
+    }, 5876);
 
   }
 
@@ -135,6 +167,17 @@ class KioskVideoList extends React.Component {
     } else {
       return false;
     }
+
+  }
+
+  isFeaturedCard(index) {
+
+    if (index == this.state.featuredPosition) {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   isDisabled(index) {
@@ -154,7 +197,7 @@ class KioskVideoList extends React.Component {
     const position = e.currentTarget.getAttribute('data-position');
     const homeX = parseInt($(e.currentTarget).css('left'));
     const homeY = parseInt($(e.currentTarget).css('top'));
-    const videoLabel = $(e.currentTarget).find('h2 .en').html();
+    const videoLabel = $(e.currentTarget).find('h2 .es').html();
 
     this.setState({
       playing: true,
@@ -243,6 +286,7 @@ class KioskVideoList extends React.Component {
         video={video}
         isActive={this.isActiveCard(this.videoOrder[index])}
         isInstruction={this.isInstructionCard(this.videoOrder[index])}
+        isFeatured={this.isFeaturedCard(this.videoOrder[index])}
         isDisabled={this.isDisabled(this.videoOrder[index])}
       />
     );
@@ -265,8 +309,6 @@ class KioskVideoList extends React.Component {
 
         {videoCards}
 
-        <StateOutline></StateOutline>
-
         <ReactCSSTransitionGroup
               transitionName='player-fade'
               transitionAppear={false}
@@ -288,6 +330,10 @@ class KioskVideoList extends React.Component {
             : null
           }
           </ReactCSSTransitionGroup>
+
+          <h3 className='featured-label'>{this.state.featuredLabel}</h3>
+
+          <StateOutline playState={this.state.playing} featured={this.state.featuredLabel}></StateOutline>
 
       </div>
     );
