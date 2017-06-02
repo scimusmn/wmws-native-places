@@ -5,6 +5,7 @@ import VideoCard from './VideosCard';
 import VideoPlayer from './VideoPlayer';
 import LoopingBackground from './LoopingBackground';
 import StateOutline from './StateOutline';
+import HorizontalBreak from './HorizontalBreak';
 import VideoPlayerScreenSaver from './VideoPlayerScreenSaver';
 import logger from '../../modules/logger';
 import _ from 'lodash';
@@ -33,7 +34,10 @@ class KioskVideoList extends React.Component {
     };
 
     // Generate video-card positions
-    this.videoOrder = this.createVideoOrder(props.shuffleOnStart);
+    this.labelOrder = [];
+    this.videoOrder = [];
+    this.positionLookup = {};
+    this.createVideoOrder(props.shuffleOnStart);
 
     this.transEnterTime = 700;
     this.transLeaveTime = 500;
@@ -92,22 +96,47 @@ class KioskVideoList extends React.Component {
 
   createVideoOrder(shuffle) {
 
-    let vidNums = [];
+    let vids = [];
 
     for (var i = 0; i < this.props.videos.length; i++) {
 
-      vidNums.push(this.props.videos[i].videoNumber);
+      vids.push(this.props.videos[i]);
 
     }
 
     // Shuffle video order
     if (shuffle) {
 
-      vidNums = _.shuffle(vidNums);
+      vids = _.shuffle(vids);
 
     }
 
-    return vidNums;
+    // Create vid num array
+    let vidNums = [];
+    let vidLabels = [];
+    for (var i = 0; i < vids.length; i++) {
+
+      vidNums.push(vids[i].videoNumber);
+      vidLabels.push(vids[i].labelEn);
+
+    }
+
+    this.videoOrder = vidNums;
+    this.labelOrder = vidLabels;
+
+    // TODO: What a mess. Could greatly simplify
+    // tracking which videos are in which positions
+    // by creating one simple lookup object containing
+    // the video, label, and id assigned to each position.
+    for (var j = 0; j < vids.length; j++) {
+
+      this.positionLookup[this.videoOrder[vids[j].videoNumber - 1]] = vids[j];
+      this.positionLookup[vids[j].labelEn] = this.videoOrder[vids[j].videoNumber - 1];
+
+    }
+
+    console.log('Video positions:');
+    console.dir(this.positionLookup);
 
   }
 
@@ -126,28 +155,35 @@ class KioskVideoList extends React.Component {
 
     setInterval(() => {
 
+      // Determine next position
       let pos = this.state.featuredPosition + 1;
       if (pos > 16 || pos <= 0) pos = 1;
-      this.setState({featuredPosition:pos});
 
-      // Send signal to map to update
+      // Determine next label
+      let label = '';
       for (var i = 0; i < this.videoOrder.length; i++) {
 
-        if (this.videoOrder[i] == this.state.featuredPosition) {
+        if (this.videoOrder[i] == pos) {
 
-          const label = this.props.videos[i].labelEn;
-          /*$('state-outline circle').removeClass('featured');
-          $('state-outline #' + featuredLabel).addClass('featured');*/
-          console.log('featuredLabel', label);
-          this.setState({featuredLabel:label});
-
+          label = this.props.videos[i].labelEn;
           break;
 
         }
 
       }
 
-    }, 5876);
+      // Temporarily feature none
+      this.setState({featuredPosition:-1});
+      this.setState({featuredLabel:''});
+
+      setTimeout(() => {
+
+        this.setState({featuredPosition:pos});
+        this.setState({featuredLabel:label});
+
+      }, 2345);
+
+    }, 11345);
 
   }
 
@@ -307,7 +343,10 @@ class KioskVideoList extends React.Component {
             : null
         }
 
-        {videoCards}
+        <div className='thumb-container'>
+          {videoCards}
+        </div>
+
 
         <ReactCSSTransitionGroup
               transitionName='player-fade'
@@ -331,9 +370,24 @@ class KioskVideoList extends React.Component {
           }
           </ReactCSSTransitionGroup>
 
-          <h3 className='featured-label'>{this.state.featuredLabel}</h3>
+          <div className='panel'>
 
-          <StateOutline playState={this.state.playing} featured={this.state.featuredLabel}></StateOutline>
+            <HorizontalBreak></HorizontalBreak>
+            <h1>Where did these place names come from?</h1>
+            <h2>Touch one to find out.</h2>
+
+            <div className='bottom-card'>
+              <div className='state-container'>
+                <StateOutline playState={this.state.playing} featured={this.state.featuredLabel} textMode={true} labelOrder={this.positionLookup}></StateOutline>
+              </div>
+
+              <h3 className={(this.state.featuredLabel == '') ? 'featured-label' : 'featured-label active'}>{this.state.featuredLabel}</h3>
+
+            </div>
+
+          </div>
+
+
 
       </div>
     );

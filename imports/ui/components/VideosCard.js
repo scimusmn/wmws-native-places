@@ -10,11 +10,39 @@ class VideoCard extends React.Component {
     this.state = {
       video: props.video,
       playing: false,
+      camMoveClass: '',
     };
 
   }
 
   componentWillReceiveProps(nextProps) {
+
+    if (nextProps.isFeatured == true && this.props.isFeatured == false) {
+
+      // Newly featured, set up some
+      // timed random movements.
+
+      setTimeout(() => {
+        // First Movement
+        this.setState({camMoveClass:this.randomCamClass()});
+      }, 2600);
+
+      setTimeout(() => {
+        // Second Movement
+        this.setState({camMoveClass:this.randomCamClass()});
+      }, 4200);
+
+      setTimeout(() => {
+        // Third Movement
+        this.setState({camMoveClass:this.randomCamClass()});
+      }, 5800);
+
+      setTimeout(() => {
+        // Final return to center
+        this.setState({camMoveClass:' cam-mid'});
+      }, 7800);
+
+    }
 
     // Pause playback when Fullscreen video is playing
     if (nextProps.isDisabled) return;
@@ -44,15 +72,43 @@ class VideoCard extends React.Component {
 
   getClassName() {
 
-    let className = 'video-button ' + ((this.props.isActive == true) ? 'active' : '');
+    let className = 'video-button ' + this.props.video.labelEn;
 
-    className += ((this.props.isFeatured == true) ? 'featured' : '');
+    // Is currently Active?
+    className += ((this.props.isActive == true) ? ' active' : '');
 
+    // Is currently Featured?
+    className += ((this.props.isFeatured == true) ? ' featured' : '');
+
+    // Is currently Disabled?
+    className += ((this.props.isDisabled == true) ? ' disabled' : '');
+
+    // Position in grid
     className += ' scanlines video-0' + this.props.position;
 
-    if (this.props.isDisabled) className += ' disabled';
+    // Camera movement when featured.
+    if (this.state.camMoveClass != '') className += this.state.camMoveClass;
 
     return className;
+
+  }
+
+  randomCamClass() {
+    // Pick random class names to
+    // randomly move camera on featured.
+    // const timings = ['early', 'mid', 'late'];
+    let moves = ['left', 'right','up', 'down'];
+
+    // Chaska exception. Stack odds to go right..
+    if (this.props.video.labelEn == '04') moves.push('right', 'right', 'right');
+
+    let classString = '';
+    const mClass = moves[Math.floor(Math.random() * moves.length)];
+
+    classString += ' cam-' + mClass;
+
+    console.log('cam classString', classString);
+    return classString;
 
   }
 
@@ -100,7 +156,7 @@ class VideoCard extends React.Component {
         </div>
 
         {this.props.isDisabled ? (
-          <img src={disbledImagePath} />
+          <img src={disabledImagePath} />
         ) : (
           <video
             loop='loop'
