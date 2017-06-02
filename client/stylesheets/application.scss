@@ -11,13 +11,13 @@
 
 @import "state/Navbar";
 
-$featured-fill: rgba(#dfe338,1.0);
+$featured-fill: #c24630;
 $brown-fill: #5D463F;
 $light-blue-fill: #A6B7B8;
 $dark-blue-fill: #6D8A8C;
 $white-blue-fill: #c6d1d2;
 
-$clip-amount: 77px;
+$clip-amount: 76px;
 $clip-round: 1px;
 
 $cell-width: calc(480px - (#{$clip-amount}*2));
@@ -106,8 +106,8 @@ h1 div.es {
  */
 .video-button h2 {
   position: absolute;
-  bottom: 5px;
-  left: 84px;
+  bottom: 4px;
+  left: 81px;
   margin: 0px;
   padding:0px;
   z-index: 2;
@@ -116,7 +116,6 @@ h1 div.es {
 .video-button h2 div.en,
 .video-button h2 div.es {
 
-
   margin: 0 0 0 0;
   padding: 4px;
   line-height: 25px;
@@ -124,19 +123,15 @@ h1 div.es {
   letter-spacing: 0.025em;
 
   background: $brown-fill;
-  /*background: #444;*/
   color: #FFF;
 
-/*  width: 121px;
-  padding-left: 89px;
-*/
   width: 32px;
-  height: 31px;
+  height: 32px;
 
-  text-align: center;
+  text-align: left;
   box-shadow: 0px 0px 12px -1px rgba(0,0,0,0.4);
 
-  transition: height 0.25s ease-out;
+  transition: height 0.25s 0.15s ease-out, width 0.25s ease-out;
 
 }
 
@@ -144,8 +139,11 @@ h1 div.es {
 .video-button.featured h2 div.es {
 
   height: 40px;
+  width: 120px;
   background: $featured-fill;
-  color: black;
+  /*color: black;*/
+
+  transition: height 0.25s ease-out, width 0.25s 0.4s ease-out;
 
 }
 
@@ -215,7 +213,7 @@ h2 div.es {
   width: 100%;
   color: $featured-fill;
   font-family: 'museo300', sans-serif !important;
-  color: #000;
+  color: $featured-fill;
   font-size: 36px;
 
 }
@@ -234,16 +232,14 @@ h2 div.es {
 
 #selection-screen .thumb-container {
 
-  background-image: url('/images/pattern-vert-tooth.png');
-  background-repeat: repeat-y;
-  background-position: left;
-
   background-color: white;
   height: 100%;
   width: 1322px;
   right: 0px;
   top: 0px;
   float: right;
+
+  border-left: solid 6px $light-blue-fill;
 }
 
 #selection-screen .panel {
@@ -302,7 +298,7 @@ h2 div.es {
 #selection-screen .panel .featured-label {
 
   font-family: 'museo300', sans-serif !important;
-  color: #000;
+  color: $featured-fill;
   line-height: 31px;
   font-size: 30px;
 
