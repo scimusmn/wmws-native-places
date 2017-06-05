@@ -120,6 +120,14 @@ class VideoCard extends React.Component {
 
   }
 
+  callToAction() {
+    if (this.props.isFeatured == true) {
+      return '. Touch to view';
+    } else {
+      return '';
+    }
+  }
+
   render() {
 
     const { video } = this.props;
@@ -143,7 +151,7 @@ class VideoCard extends React.Component {
         <img src={buttonImagePath} className='dakota' />
 
         <h2>
-          <div className='en'>{paddedPosition}</div>
+          <div className='en'>{paddedPosition}{this.callToAction()}</div>
           <div className='es'>{video.labelEs}</div>
         </h2>
 

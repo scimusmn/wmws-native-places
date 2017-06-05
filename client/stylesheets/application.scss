@@ -18,7 +18,7 @@ $dark-blue-fill: #6D8A8C;
 $white-blue-fill: #c6d1d2;
 
 $clip-amount: 76px;
-$clip-round: 1px;
+$clip-round: 6px;
 
 $cell-width: calc(480px - (#{$clip-amount}*2));
 $cell-height: 270px;
@@ -139,9 +139,8 @@ h1 div.es {
 .video-button.featured h2 div.es {
 
   height: 40px;
-  width: 120px;
+  width: 172px;
   background: $featured-fill;
-  /*color: black;*/
 
   transition: height 0.25s ease-out, width 0.25s 0.4s ease-out;
 
@@ -201,8 +200,11 @@ h2 div.es {
   .cls-3.featured {
     font-size: 56px;
     fill: $featured-fill;
+    /*fill: white;*/
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
+
+    box-shadow: 11px 1px 3px rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -213,9 +215,6 @@ h2 div.es {
   width: 100%;
   color: $featured-fill;
   font-family: 'museo300', sans-serif !important;
-  color: $featured-fill;
-  font-size: 36px;
-
 }
 
 .state-outline.home  {
@@ -240,6 +239,7 @@ h2 div.es {
   float: right;
 
   border-left: solid 6px $light-blue-fill;
+
 }
 
 #selection-screen .panel {
@@ -300,7 +300,7 @@ h2 div.es {
   font-family: 'museo300', sans-serif !important;
   color: $featured-fill;
   line-height: 31px;
-  font-size: 30px;
+  font-size: 40px;
 
   transition: opacity 0.5s ease-out;
   opacity: 0.0;
