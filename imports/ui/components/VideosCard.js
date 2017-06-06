@@ -97,7 +97,7 @@ class VideoCard extends React.Component {
     // Pick random class names to
     // randomly move camera on featured.
     // const timings = ['early', 'mid', 'late'];
-    let moves = ['left', 'right','up', 'down'];
+    let moves = ['left', 'right', 'up', 'down'];
 
     // Chaska exception. Stack odds to go right..
     if (this.props.video.labelEn == '04') moves.push('right', 'right', 'right');
@@ -107,7 +107,6 @@ class VideoCard extends React.Component {
 
     classString += ' cam-' + mClass;
 
-    console.log('cam classString', classString);
     return classString;
 
   }

@@ -10,6 +10,7 @@ import VideoPlayerScreenSaver from './VideoPlayerScreenSaver';
 import logger from '../../modules/logger';
 import _ from 'lodash';
 import TweenMax from 'gsap';
+import Mousetrap from 'mousetrap';
 
 class KioskVideoList extends React.Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class KioskVideoList extends React.Component {
       showVideo: false,
       idleTime: 0,
       screenSaver: 'inactive',
+      selectionScreenTheme: '',
     };
 
     // Generate video-card positions
@@ -51,6 +53,42 @@ class KioskVideoList extends React.Component {
     setInterval(() => {
       this.timerIncrement();
     }, 1000);
+
+    // Select layout theme
+    // for selection screen
+    this.selectTheme();
+
+  }
+
+  selectTheme() {
+
+    // Select by odd/even date,
+    // listen for 't' keystrokes
+    // toggle theme at runtime.
+
+    const d = new Date().getDate();
+    const isEvenDay = (d % 2 == 0);
+    console.log(isEvenDay);
+    if (isEvenDay) {
+      // Map layout w key
+      this.setState({selectionScreenTheme:'theme-mn-map'});
+    } else {
+      // Fullscreen grid layout
+      this.setState({selectionScreenTheme:'theme-fs-grid'});
+    }
+
+    Mousetrap.bind('t', () => {
+
+      if (this.state.selectionScreenTheme == 'theme-mn-map') {
+        this.setState({selectionScreenTheme:'theme-fs-grid'});
+        console.log('selectionScreenTheme:', 'theme-fs-grid');
+      } else {
+        this.setState({selectionScreenTheme:'theme-mn-map'});
+        console.log('selectionScreenTheme:', 'theme-mn-map');
+      }
+
+    });
+
   }
 
   timerIncrement() {
@@ -178,8 +216,12 @@ class KioskVideoList extends React.Component {
 
       setTimeout(() => {
 
-        this.setState({featuredPosition:pos});
-        this.setState({featuredLabel:label});
+        if (this.state.playing == false) {
+
+          this.setState({featuredPosition:pos});
+          this.setState({featuredLabel:label});
+
+        }
 
       }, 2345);
 
@@ -231,9 +273,10 @@ class KioskVideoList extends React.Component {
   launchVideoPlayer(e) {
 
     const position = e.currentTarget.getAttribute('data-position');
+    const selected = this.positionLookup[position];
     const homeX = parseInt($(e.currentTarget).css('left'));
     const homeY = parseInt($(e.currentTarget).css('top'));
-    const videoLabel = $(e.currentTarget).find('h2 .es').html();
+    const videoLabel = selected.labelEn;
 
     this.setState({
       playing: true,
@@ -244,6 +287,12 @@ class KioskVideoList extends React.Component {
       showVideo: true,
       transitioning: true,
     });
+
+    // Global awareness
+    // Todo: should be passed through
+    // state, but this is temp for trying
+    // state-as-home-button idea.
+    Session.set('selectedPlace', selected);
 
     // Log for analytics
     logger.info({ message:'video-selected',
@@ -273,6 +322,8 @@ class KioskVideoList extends React.Component {
     if (this.state.transitioning == false) {
 
       this.setState({ transitioning: true, playing: false });
+
+      Session.set('selectedPlace', undefined);
 
       // Log for analytics
       logger.info({message:'video-exit', vidData});
@@ -328,7 +379,7 @@ class KioskVideoList extends React.Component {
     );
 
     return (
-      <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'map-cctv vid-count-' + this.props.videos.length}>
+      <div onClick={this.resetScreenSaverTimer.bind(this)} key='unique' id='selection-screen' className={'map-cctv vid-count-' + this.props.videos.length + ' ' + this.state.selectionScreenTheme}>
 
         {
             this.loopBackground() === true
@@ -370,24 +421,28 @@ class KioskVideoList extends React.Component {
           }
           </ReactCSSTransitionGroup>
 
-          <div className='panel'>
+          {(this.state.selectionScreenTheme == 'theme-mn-map')
+            ?
 
-            <HorizontalBreak></HorizontalBreak>
-            <h1>Where did these place names come from?</h1>
-            <h2>Touch one to find out.</h2>
+              <div className='panel'>
 
-            <div className='bottom-card'>
-              <div className='state-container'>
-                <StateOutline playState={this.state.playing} featured={this.state.featuredLabel} textMode={true} labelOrder={this.positionLookup}></StateOutline>
+                <HorizontalBreak></HorizontalBreak>
+                <h1>Where did these place names come from?</h1>
+                <h2>Touch one to find out.</h2>
+
+                <div className='bottom-card'>
+                  <div className='state-container'>
+                    <StateOutline playState={false} featured={this.state.featuredLabel} textMode={true} labelOrder={this.positionLookup}></StateOutline>
+                  </div>
+
+                  <h3 className={(this.state.featuredLabel == '') ? 'featured-label' : 'featured-label active'}>{this.state.featuredLabel}</h3>
+
+                </div>
+
               </div>
 
-              <h3 className={(this.state.featuredLabel == '') ? 'featured-label' : 'featured-label active'}>{this.state.featuredLabel}</h3>
-
-            </div>
-
-          </div>
-
-
+            : null
+          }
 
       </div>
     );
