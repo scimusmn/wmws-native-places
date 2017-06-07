@@ -147,17 +147,20 @@ class VideoCard extends React.Component {
         id={`video-${paddedVideoNumber}`}
       >
 
-        <img src={buttonImagePath} className='dakota' />
-
         <h2>
           <div className='en'>{paddedPosition}{this.callToAction()}</div>
           <div className='es'>{video.labelEs}</div>
         </h2>
 
         <div className={this.instructionClass()}>
+
           <h3>Where did these place names come from?</h3>
+          <img src='/images/horizontal-rule-small.png' className='h-break' />
           <h3 className='sub'>Touch one to find out.</h3>
+
         </div>
+
+        <img src={buttonImagePath} className='dakota' />
 
         <div className='overlay'>
         </div>

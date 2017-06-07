@@ -17,18 +17,6 @@ $light-blue-fill: #A6B7B8;
 $dark-blue-fill: #6D8A8C;
 $white-blue-fill: #c6d1d2;
 
-$clip-amount: 76px;
-$clip-round: 6px;
-
-$thumb-width: 480px;
-$thumb-height: 270px;
-
-$cell-width: calc(480px - (#{$clip-amount}*2));
-$thumb-height: 270px;
-
-$grid-start-left: calc(1920px - (#{$cell-width}*4) - #{$clip-amount});
-$grid-start-top: 0px;
-
 body {
   width: 1920px;
   height: 1080px;
@@ -110,7 +98,7 @@ h1 div.es {
 .video-button h2 {
   position: absolute;
   bottom: 4px;
-  left: 81px;
+  left: 82px;
   margin: 0px;
   padding:0px;
   z-index: 2;
@@ -121,6 +109,7 @@ h1 div.es {
 
   margin: 0 0 0 0;
   padding: 4px;
+  padding-left: 6px !important;
   line-height: 25px;
   font-size: 18px;
   letter-spacing: 0.025em;
@@ -128,7 +117,7 @@ h1 div.es {
   background: $brown-fill;
   color: #FFF;
 
-  width: 32px;
+  width: 35px;
   height: 32px;
 
   text-align: left;
@@ -213,12 +202,21 @@ h2 div.es {
 #selection-screen .instruction-card {
   width: 100%;
   height: 100%;
+
   text-align: center;
-  background-color: rgba(0,0,0,0.95);
+  color: $white-blue-fill;
+
+  background-color:white;
+
   transition: opacity 0.7s 0.1s ease-out;
   opacity: 0.0;
   position: absolute;
-  color: white;
+
+  z-index: 5;
+
+  background-image: url('/images/pattern-tooth.png');
+  background-repeat: repeat-x;
+  background-position: 1% 97.5%;
 
 }
 
@@ -228,35 +226,39 @@ h2 div.es {
 }
 
 .instruction-card .h-break {
-  padding-top: 13px;
+  padding-top: 4px;
 }
 
 #selection-screen .instruction-card h3 {
   font-size: 2.2em;
-  padding: 22px 0px 0px 0px;
+  padding: 18px 0px 0px 0px;
   margin-left: 50px;
   margin-right: 50px;
   font-family: 'museo700', sans-serif;
+  color: $dark-blue-fill;
 }
 
-#selection-screen .instruction-card h3.sub {
-  padding: 5px 0px 0px 0px;
+#selection-screen .instruction-card .sub {
+  padding: 14px 0px 0px 0px;
+  margin: 0px;
   font-size: 2.0em;
+  color: $light-blue-fill;
   font-family: 'museo300', sans-serif;
+
 }
 
 #selection-screen .video-button img.dakota {
   width: 480px;
   height: 270px;
   position: absolute;
-  transition: opacity 2.5s 9s ease-in;
+  transition: opacity 2.5s 9s ease-in !important;
   opacity: 0.0;
   z-index: 2;
 }
 
 #selection-screen .video-button.active img.dakota {
-  transition: opacity 0.1s 1.0s ease-in;
-  opacity: 1.0;
+  transition: opacity 0.1s 1.0s ease-in !important;
+  opacity: 1.0 !important;
 }
 
 
@@ -265,12 +267,39 @@ h2 div.es {
 /* *********************** */
 #selection-screen.theme-fs-grid {
 
+  background: linear-gradient(
+                  to bottom,
+                  #222 50%,
+                  rgba($white-blue-fill, 0.2) 51%
+              );
+  background-size: 100% 4px;
+
+  $clip-amount: 0px;
+  $clip-round: 24px;
+  $clip-pad: 12px;
+
+  $thumb-width: 480px;
+  $thumb-height: 270px;
+
+  $cell-width: calc(480px - (#{$clip-amount}*2));
+  $thumb-height: 270px;
+
+  $grid-start-left: calc(1920px - (#{$cell-width}*4) - #{$clip-amount});
+  $grid-start-top: 0px;
+
+  .thumb-container {
+    left: 12px !important;
+    top: 3px;
+    position: absolute;
+  }
+
+
   .video-button,
   .video-button video,
   .video-button img  {
 
     transition: clip-path 0.2s ease-in;
-    clip-path: inset(3px 3px 3px 3px round #{$clip-round} #{$clip-round});
+    clip-path: inset($clip-pad 14px $clip-pad 14px round #{$clip-round} #{$clip-round});
 
   }
 
@@ -279,9 +308,6 @@ h2 div.es {
     width: 100%;
     height: 100%;
     position: absolute;
-
-    outline: 5px solid $dark-blue-fill;
-    outline-offset: -5px;
 
   }
 
@@ -305,7 +331,7 @@ h2 div.es {
   .video-05,
   .video-09,
   .video-013 {
-    left: calc((0 * #{$thumb-width}));
+    left: calc(0 * (#{$thumb-width} - 8px));
   }
 
   /* Second column of 4x4 grid. */
@@ -313,7 +339,7 @@ h2 div.es {
   .video-06,
   .video-010,
   .video-014 {
-    left: calc((1 * #{$thumb-width}));
+    left: calc(1 * (#{$thumb-width} - 8px));
   }
 
   /* Third column of 4x4 grid. */
@@ -321,7 +347,7 @@ h2 div.es {
   .video-07,
   .video-011,
   .video-015 {
-    left: calc((2 * #{$thumb-width});
+    left: calc(2 * (#{$thumb-width} - 8px));
   }
 
   /* Fourth column of 4x4 grid. */
@@ -329,7 +355,7 @@ h2 div.es {
   .video-08,
   .video-012,
   .video-016 {
-    left: calc((3 * #{$thumb-width}));
+    left: calc(3 * (#{$thumb-width} - 8px));
   }
 
   /* First row of 4x4 grid. */
@@ -337,7 +363,7 @@ h2 div.es {
   .video-02,
   .video-03,
   .video-04 {
-    top: calc((0 * #{$thumb-height}));
+    top: calc(0 * (#{$thumb-height} - 4px));
   }
 
   /* Second row of 4x4 grid. */
@@ -345,7 +371,7 @@ h2 div.es {
   .video-06,
   .video-07,
   .video-08 {
-    top: calc((1 * #{$thumb-height}));
+    top: calc(1 * (#{$thumb-height} - 4px));
   }
 
   /* Third row of 4x4 grid. */
@@ -353,7 +379,7 @@ h2 div.es {
   .video-010,
   .video-011,
   .video-012 {
-    top: calc((2 * #{$thumb-height}));
+    top: calc(2 * (#{$thumb-height} - 4px));
   }
 
   /* Fourth row of 4x4 grid. */
@@ -361,7 +387,7 @@ h2 div.es {
   .video-014,
   .video-015,
   .video-016 {
-    top: calc((3 * #{$thumb-height}));
+    top: calc(3 * (#{$thumb-height} - 4px));
   }
 
 }
@@ -371,12 +397,25 @@ h2 div.es {
 /* ********************* */
 #selection-screen.theme-mn-map {
 
+  $clip-amount: 76px;
+  $clip-round: 16px;
+  $clip-pad: 3px;
+
+  $thumb-width: 480px;
+  $thumb-height: 270px;
+
+  $cell-width: calc(480px - (#{$clip-amount}*2));
+  $thumb-height: 270px;
+
+  $grid-start-left: calc(1919px - (#{$cell-width}*4) - #{$clip-amount});
+  $grid-start-top: 0px;
+
   .video-button,
   .video-button video,
   .video-button img  {
 
     transition: clip-path 0.2s ease-in;
-    clip-path: inset(3px calc(3px + #{$clip-amount}) 3px calc(3px + #{$clip-amount}) round #{$clip-round} #{$clip-round});
+    clip-path: inset($clip-pad calc(#{$clip-pad} + #{$clip-amount}) $clip-pad calc(#{$clip-pad} + #{$clip-amount}) round #{$clip-round} #{$clip-round});
 
   }
 
@@ -388,6 +427,12 @@ h2 div.es {
 
     float: right;
     padding-right: $clip-amount;
+
+  }
+
+  .instruction-card {
+
+    display: none;
 
   }
 
@@ -417,7 +462,7 @@ h2 div.es {
   .video-button.featured h2 div.es {
 
     height: 40px;
-    width: 172px;
+    width: 176px;
     background: $featured-fill;
 
     transition: height 0.25s ease-out, width 0.25s 0.4s ease-out;
@@ -657,6 +702,14 @@ h2 div.es {
 
     border-left: solid 6px $light-blue-fill;
 
+    background: linear-gradient(
+                  to bottom,
+                  rgba(233, 249, 255, 0.88) 50%,
+                  white 51%
+              );
+
+    background-size: 100% 4px;
+
   }
 
   .featured-label {
@@ -675,9 +728,9 @@ h2 div.es {
  */
 .state-outline {
   position: absolute;
-  top: 34px;
-  left: 90px;
-  width: 76%;
+  top: 26px;
+  left: 26px;
+  width: 90%;
 }
 
 .state-outline {
@@ -696,14 +749,15 @@ h2 div.es {
     transform-origin: 50% 50%;
     transform: scale(1.0,1.0);
 
-    /*transition: all 0.1s ease-out;*/
+    transition: all 0.1s ease-out;
   }
   .cls-2.featured {
-    fill: rgba($featured-fill, 1);
+
+    fill:$featured-fill;
     stroke-width:0px;
-    stroke:$featured-fill;
-    transform:scale(6.5, 6.5);
-    /*transition: all 0.1s ease-out;*/
+    stroke:$dark-blue-fill;
+    transform:scale(7.5, 7.5);
+
   }
   .cls-3 {
     font-size: 20px;
@@ -720,6 +774,53 @@ h2 div.es {
 
     box-shadow: 11px 1px 3px rgba(255, 255, 255, 0.9);
   }
+
+  /* Zoom component */
+  .z-container {
+    transform: translate(510px, 450px);
+  }
+  .z-cls-1 {
+    fill: transparent;
+    transform-origin: 50% 50%;
+    transform: scale(1.0,1.0);
+
+    transition: all 0.1s ease-out;
+  }
+  .z-cls-1.featured {
+
+    fill:$featured-fill;
+    stroke-width:0px;
+    stroke:$dark-blue-fill;
+    transform:scale(7.5, 7.5);
+
+  }
+  .z-cls-2 {
+    fill:rgba(#333, 1.0);
+    stroke:rgba(245,245,245,0.35);
+    stroke-miterlimit:10;
+    stroke-width:12px;
+    transition: all 0.6s ease-in-out;
+  }
+  .z-cls-2.featured {
+    stroke:$featured-fill;
+  }
+  .z-cls-3 {
+    font-size: 20px;
+    fill: rgba(#eee, 1);
+    font-family: 'museo700', sans-serif !important;
+    transition: all 0.5s ease-out;
+  }
+  .z-cls-4 {
+    fill:none;
+    stroke:$white-blue-fill;
+    stroke-miterlimit:10;
+    stroke-width:12px;
+  }
+  .z-cls-5 {
+    fill:$white-blue-fill;
+    stroke:none;
+    stroke-miterlimit:10;
+  }
 }
 
 /* Home btn version of state svg */
@@ -730,14 +831,28 @@ h2 div.es {
   width: 160px;
 
   .cls-1{
-    stroke:rgba(#333, 0.9);
+    /*stroke:$dark-blue-fill;*/
     stroke-width:9px;
-    fill:rgba($white-blue-fill, 1);
+    fill:rgba(#f1f9fb, 0.8);
   }
   .cls-1.featured {
-    stroke:$featured-fill;
+    /*stroke:$featured-fill;*/
   }
 
+}
+
+.home-fade-enter {
+  opacity: 0.01;
+}
+
+.home-fade-enter.home-fade-enter-active {
+  opacity: 1.0;
+  transition: opacity 3.5s 4.25s ease-in;
+}
+
+.home-fade-leave {
+   opacity: 0.0;
+   transition: opacity 3.3s ease-out;
 }
 
 
@@ -797,12 +912,21 @@ h2 div.es {
 
 }
 
-.home-button:active img {
-  opacity: 0.0;
+.home-button svg {
+  transition: transform .1s ease-out, opacity 0.6s ease-out;
 
+  opacity: 1.0;
   /* Hide cursor */
   cursor: none;
 
+}
+
+.home-button:active svg {
+  transform: scale(0.96);
+}
+
+.home-button.fade svg {
+  opacity: 0.0;
 }
 
 .looping-background {
@@ -823,36 +947,28 @@ h2 div.es {
   z-index: 4;
 }
 
-/* CRT Scan Lines */
-/* REGULAR SCANLINES SETTINGS */
 
-    // width of 1 scanline (min.: 1px)
-    $scan-width: 2px;
+/**
+ * CCTV Scan Lines
+ */
+$scan-width: 2px;
 
-    // emulates a damage-your-eyes bad pre-2000 CRT screen ♥ (true, false)
-    $scan-crt: false;
+/* emulates a damage-your-eyes bad pre-2000 CRT screen ♥ (true, false) */
+$scan-crt: false;
 
-    // frames-per-second (should be > 1), only applies if $scan-crt: true;
-    $scan-fps: 15;
+/* frames-per-second (should be > 1), only applies if $scan-crt: true; */
+$scan-fps: 30;
 
-    // scanline-color (rgba)
-    $scan-color: rgba(#000, .12);
+$scan-color: rgba(#111, .1);
+$scan-z-index: 4;
 
-    // set z-index on 8, like in ♥ 8-bits ♥, or…
-    // set z-index on 2147483648 or more to enable scanlines on Chrome fullscreen (doesn't work in Firefox or IE);
-    $scan-z-index: 2147483648;
+/* Moving scanline (true, false) */
+$scan-moving-line: true;
 
-/* MOVING SCANLINE SETTINGS */
+/* Opacity of the moving scanline */
+$scan-opacity: 0.95;
 
-    // moving scanline (true, false)
-    $scan-moving-line: true;
-
-    // opacity of the moving scanline
-    $scan-opacity: .8;
-
-/* MIXINS */
-
-// apply CRT animation: @include scan-crt($scan-crt);
+/* Apply CRT animation: @include scan-crt($scan-crt); */
 @mixin scan-crt($scan-crt) {
     @if $scan-crt == true {
         animation: scanlines 1s steps($scan-fps) infinite;
@@ -860,15 +976,15 @@ h2 div.es {
     @else { animation: none; }
 }
 
-// apply CRT animation: @include scan-crt($scan-crt);
+/* Apply CRT animation: @include scan-crt($scan-crt); */
 @mixin scan-moving($scan-moving-line) {
     @if $scan-moving-line == true {
-        animation: scanline 3.7s linear infinite;
+        animation: scanline 3.3s linear infinite;
     }
     @else { animation: none; }
 }
 
-/* CSS .scanlines CLASS */
+/* CCTV scan lines */
 .scanlines {
     position: relative;
     overflow: hidden;
@@ -897,17 +1013,8 @@ h2 div.es {
     }
 }
 
+/* More active version of scan lines */
 .featured.scanlines {
-  position: relative;
-  overflow: hidden;
-
-  &:before,
-  &:after {
-    display: block;
-    pointer-events: none;
-    content: '';
-    position: absolute;
-  }
 
   /* Scanline traveling on the screen */
   &:before {
@@ -919,20 +1026,6 @@ h2 div.es {
     @include scan-moving($scan-moving-line);
   }
 
-  &:after {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: $scan-z-index;
-    background: linear-gradient(
-        to bottom,
-        transparent 50%,
-        $scan-color 51%
-    );
-    background-size: 100% $scan-width*2;
-    @include scan-crt($scan-crt);
-  }
 }
 
 /* Scanline animations */

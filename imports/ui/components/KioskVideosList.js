@@ -44,7 +44,7 @@ class KioskVideoList extends React.Component {
     this.transEnterTime = 700;
     this.transLeaveTime = 500;
 
-    // this.startInstructionCycle();
+    this.startInstructionCycle();
     this.startFeaturedCycle();
 
   }
@@ -62,29 +62,40 @@ class KioskVideoList extends React.Component {
 
   selectTheme() {
 
-    // Select by odd/even date,
-    // listen for 't' keystrokes
-    // toggle theme at runtime.
+    // Theme id is passed by query string.
+    const queryTheme = this.props.location.query.theme;
 
-    const d = new Date().getDate();
-    const isEvenDay = (d % 2 == 0);
-    console.log(isEvenDay);
-    if (isEvenDay) {
-      // Map layout w key
-      this.setState({selectionScreenTheme:'theme-mn-map'});
+    if (queryTheme) {
+
+      console.log('Found query theme:', queryTheme);
+      this.setState({selectionScreenTheme:queryTheme});
+
     } else {
-      // Fullscreen grid layout
-      this.setState({selectionScreenTheme:'theme-fs-grid'});
+
+      console.log('No query theme found.');
+
+      // Select by odd/even date.
+      const d = new Date().getDate();
+      const isEvenDay = (d % 2 == 0);
+
+      if (isEvenDay) {
+        // Map layout w key
+        this.setState({selectionScreenTheme:'theme-mn-map'});
+      } else {
+        // Fullscreen grid layout
+        this.setState({selectionScreenTheme:'theme-fs-grid'});
+      }
+
     }
 
+    // Listen for future 't'
+    // keystrokes to toggle in realtime.
     Mousetrap.bind('t', () => {
 
       if (this.state.selectionScreenTheme == 'theme-mn-map') {
         this.setState({selectionScreenTheme:'theme-fs-grid'});
-        console.log('selectionScreenTheme:', 'theme-fs-grid');
       } else {
         this.setState({selectionScreenTheme:'theme-mn-map'});
-        console.log('selectionScreenTheme:', 'theme-mn-map');
       }
 
     });
@@ -321,9 +332,9 @@ class KioskVideoList extends React.Component {
 
     if (this.state.transitioning == false) {
 
-      this.setState({ transitioning: true, playing: false });
+      Session.set('selectedPlace', '');
 
-      Session.set('selectedPlace', undefined);
+      this.setState({ transitioning: true, playing: false });
 
       // Log for analytics
       logger.info({message:'video-exit', vidData});

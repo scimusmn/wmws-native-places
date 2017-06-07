@@ -1,6 +1,6 @@
 {
   "public": {
-    "screenSaverTimeout": 300,
+    "screenSaverTimeout": 600,
     "installPath": "/usr/local/src/wmws-native-places",
     "logger": {
       "projectShortName": "wmws",

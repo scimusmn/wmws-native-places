@@ -75,7 +75,7 @@ class StateOutline extends React.Component {
       <div className={'state-outline ' + (this.props.playState ?  'home' : 'selection')}>
 
         {this.props.textMode == true ? (
-        <svg id='StateMN-txt' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 995.58 1146.08'>
+        <svg id='StateMN-txt' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1195.58 1146.08'>
           <defs>
             <filter id='text-effect-1'>
               <feMorphology in='SourceGraphic' operator='dilate' radius='2' result='expand'/>
@@ -127,6 +127,27 @@ class StateOutline extends React.Component {
           <text id='Mankato-txt' className='cls-3' filter='url(#text-effect-1)' transform='translate(401.21 1021.41)' textAnchor='middle' dominantBaseline='middle'>XX</text>
           <text id='Owatonna-txt' className='cls-3' filter='url(#text-effect-1)' transform='translate(514.48 1037.01)' textAnchor='middle' dominantBaseline='middle'>XX</text>
           <text id='Chaska-txt' className='cls-3' filter='url(#text-effect-1)' transform='translate(461.67 890.49)' textAnchor='middle' dominantBaseline='middle'>XX</text>
+
+          <g className='z-container'>
+            <g>
+              <g>
+                <path className='z-cls-1' d='M1152.14,633.26c-3.31,9.23,3.08,11.36,4,25.09s-0.95,18.93-11.6,26.27c-10.18,7.57-6.15,20.35,2.37,33.85s7.34,30.3,7.34,40.95-8.28,11.6-3.08,20.12,0.95,20.12-7.34,38.11-7.1,26.51-5.21,29.59c1.23,2,14.14,9.49,27.64,18.19A264.59,264.59,0,0,0,1157.15,591c-0.33.41-.66,0.84-1,1.31C1148.11,603.67,1155.45,624,1152.14,633.26Z' transform='translate(-526.1 -466.27)'/>
+                <path className='z-cls-2' d='M671.37,735.71c0,146,118.39,264.44,264.44,264.44a264.34,264.34,0,0,0,230.48-134.74c-13.5-8.7-26.41-16.19-27.64-18.19-1.89-3.08-3.08-11.6,5.21-29.59s12.54-29.59,7.34-38.11,3.08-9.47,3.08-20.12,1.18-27.46-7.34-40.95-12.54-26.27-2.37-33.85c10.65-7.34,12.54-12.54,11.6-26.27s-7.34-15.86-4-25.09-4-29.59,4-40.95c0.33-.47.66-0.9,1-1.31A264.19,264.19,0,0,0,935.81,471.27C789.76,471.27,671.37,589.66,671.37,735.71Z' transform='translate(-526.1 -466.27)'/>
+              </g>
+              <circle id='Anoka' className='z-cls-3' cx='416.57' cy='151.13' r='5'/>
+              <circle id='Mendota' className='z-cls-3' cx='490.18' cy='304.74' r='5'/>
+              <circle id='Minnehaha' className='z-cls-3' cx='474.09' cy='291.01' r='5'/>
+              <circle id='Shakopee' className='z-cls-3' cx='364.03' cy='348.29' r='5'/>
+              <circle id='Chanhassen' className='z-cls-3' cx='364.03' cy='316.1' r='5'/>
+              <circle id='Minnetonka' className='z-cls-3' cx='387.7' cy='289.12' r='5'/>
+              <circle id='LakeCalhoun' className='z-cls-3' cx='435.98' cy='269' r='5'/>
+              <circle id='Waconia' className='z-cls-3' cx='274.09' cy='322.97' r='5'/>
+              <circle id='Wayzata' className='z-cls-3' cx='371.13' cy='261.9' r='5'/>
+              <circle id='Chaska' className='z-cls-3' cx='337.99' cy='351.37' r='5'/>
+              <circle className='z-cls-4' cx='412.56' cy='269.44' r='264.44'/>
+            </g>
+            <polygon className='z-cls-5' points='158 321 36 390 169 372 157.12 347.7'/>
+          </g>
 
         </svg>
 
