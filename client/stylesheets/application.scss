@@ -12,7 +12,7 @@
 @import "state/Navbar";
 
 $featured-fill: #c24630;
-$brown-fill: #5D463F;
+$tab-fill: rgba(#bc8d4a, 0.8);
 $light-blue-fill: #A6B7B8;
 $dark-blue-fill: #6D8A8C;
 $white-blue-fill: #c6d1d2;
@@ -97,11 +97,18 @@ h1 div.es {
  */
 .video-button h2 {
   position: absolute;
-  bottom: 4px;
-  left: 82px;
+  bottom: 3px;
+  left: 80px;
   margin: 0px;
   padding:0px;
-  z-index: 2;
+  z-index: 7;
+
+  text-overflow: hidden;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+
 }
 
 .video-button h2 div.en,
@@ -109,13 +116,14 @@ h1 div.es {
 
   margin: 0 0 0 0;
   padding: 4px;
-  padding-left: 6px !important;
+  padding-left: 7px !important;
   line-height: 25px;
   font-size: 18px;
-  letter-spacing: 0.025em;
+  letter-spacing: 1px;
+  font-family: 'museo300', sans-serif;
 
-  background: $brown-fill;
-  color: #FFF;
+  background: $tab-fill;
+  color: rgba(white, 0.9);
 
   width: 35px;
   height: 32px;
@@ -293,7 +301,6 @@ h2 div.es {
     position: absolute;
   }
 
-
   .video-button,
   .video-button video,
   .video-button img  {
@@ -308,6 +315,8 @@ h2 div.es {
     width: 100%;
     height: 100%;
     position: absolute;
+
+    /*tbox-shadow: inset 0px 0px 16px 14px rgba($white-blue-fill, 0.4);*/
 
   }
 
@@ -438,20 +447,26 @@ h2 div.es {
 
   /* Featured cell */
   .video-button .overlay {
-    z-index: 9;
+
+    z-index: 6;
     width: 100%;
     height: 100%;
     position: absolute;
     transition: all 0.2s ease-out;
 
-    outline: 5px solid $dark-blue-fill;
+    outline: 5px solid $light-blue-fill;
     outline-offset: -5px;
+
+    box-shadow: inset 0px 0px 16px 14px rgba($dark-blue-fill, 0.3);
+
   }
 
   .video-button.featured .overlay {
 
     transition: all 0.15s ease-out;
     background-color: rgba(255,255,255,0.1);
+
+    outline: 5px solid $featured-fill;
 
     box-shadow: inset 0px 0px 16px 14px $featured-fill;
 
@@ -606,7 +621,7 @@ h2 div.es {
   }
 
   /* Left side panel. */
-  .panel {
+  .left-panel {
 
     background-color: #333;
     position: absolute;
@@ -620,22 +635,23 @@ h2 div.es {
 
   }
 
-  .panel h1,
-  .panel h2 {
+  .left-panel h1,
+  .left-panel h2 {
     text-align: left;
     color: $white-blue-fill;
-    margin: 18px 34px;
+    margin: 18px 44px;
+    letter-spacing: 1px;
   }
 
-  .panel h1 {
+  .left-panel h1 {
 
-    padding-top: 14%;
+    padding-top: 13%;
     font-family: 'museo700', sans-serif !important;
     font-size: 40px;
 
   }
 
-  .panel h2 {
+  .left-panel h2 {
 
     padding: 0px;
     font-family: 'museo300', sans-serif !important;
@@ -643,11 +659,11 @@ h2 div.es {
 
   }
 
-  .panel .bottom-card {
+  .left-panel .bottom-card {
 
     background-color: $light-blue-fill;
     width: 100%;
-    height: 74%;
+    height: 75%;
     bottom: 0px;
     left: 0px;
     position: absolute;
@@ -659,25 +675,26 @@ h2 div.es {
 
   }
 
-  .panel .featured-label {
+  .left-panel .featured-label {
 
     font-family: 'museo300', sans-serif !important;
     color: $featured-fill;
-    line-height: 31px;
-    font-size: 40px;
+    line-height: 22px;
+    font-size: 56px;
+    letter-spacing: 1px;
 
     transition: opacity 0.5s ease-out;
     opacity: 0.0;
 
   }
 
-  .panel .featured-label.active {
+  .left-panel .featured-label.active {
 
     opacity: 1.0;
 
   }
 
-  .panel .bottom-card .state-container {
+  .left-panel .bottom-card .state-container {
 
     background-color: $dark-blue-fill;
     width: 100%;
@@ -693,20 +710,22 @@ h2 div.es {
   /* Right side container */
   .thumb-container {
 
-    background-color: white;
+
     height: 100%;
-    width: 1322px;
+    width: 1326px;
     right: 0px;
     top: 0px;
     float: right;
 
-    border-left: solid 6px $light-blue-fill;
+    border-left: solid 6px $white-blue-fill;
 
     background: linear-gradient(
                   to bottom,
-                  rgba(233, 249, 255, 0.88) 50%,
-                  white 51%
+                  transparent 50%,
+                  rgba($white-blue-fill, 0.25) 51%
               );
+
+    background-color: white;
 
     background-size: 100% 4px;
 
@@ -728,9 +747,9 @@ h2 div.es {
  */
 .state-outline {
   position: absolute;
-  top: 26px;
-  left: 26px;
-  width: 90%;
+  top: 25px;
+  left: 17px;
+  width: 92%;
 }
 
 .state-outline {
@@ -760,19 +779,22 @@ h2 div.es {
 
   }
   .cls-3 {
-    font-size: 20px;
-    fill: rgba(#eee, 1);
-    font-family: 'museo700', sans-serif !important;
-    transition: all 0.5s ease-out;
+
+    font-size: 16px;
+    fill: #FFF;
+
+    font-family: 'museo300', sans-serif;
+    fill: rgba(white, 0.9);
+
+    transition: all 0.5s ease-out !important;
+
   }
   .cls-3.featured {
-    font-size: 56px;
-    fill: $featured-fill;
-    /*fill: white;*/
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
 
+    font-size: 36px;
+    fill: #FFF;
     box-shadow: 11px 1px 3px rgba(255, 255, 255, 0.9);
+
   }
 
   /* Zoom component */
@@ -806,9 +828,14 @@ h2 div.es {
   }
   .z-cls-3 {
     font-size: 20px;
-    fill: rgba(#eee, 1);
-    font-family: 'museo700', sans-serif !important;
-    transition: all 0.5s ease-out;
+    font-family: 'museo300', sans-serif;
+    fill: rgba(white, 0.9);
+    transition: font-size 0.5s ease-out !important;
+  }
+  .z-cls-3.featured {
+    font-size: 48px;
+    fill: #FFF;
+    box-shadow: 11px 1px 3px rgba(255, 255, 255, 0.9);
   }
   .z-cls-4 {
     fill:none;
@@ -826,7 +853,7 @@ h2 div.es {
 /* Home btn version of state svg */
 .state-outline.home {
 
-  left: 51px;
+  left: 49px;
   top: -84px;
   width: 160px;
 
@@ -959,7 +986,8 @@ $scan-crt: false;
 /* frames-per-second (should be > 1), only applies if $scan-crt: true; */
 $scan-fps: 30;
 
-$scan-color: rgba(#111, .1);
+$scan-color: rgba($white-blue-fill, .1);
+$scan-color-heavy: rgba($white-blue-fill, .2);
 $scan-z-index: 4;
 
 /* Moving scanline (true, false) */
@@ -979,13 +1007,13 @@ $scan-opacity: 0.95;
 /* Apply CRT animation: @include scan-crt($scan-crt); */
 @mixin scan-moving($scan-moving-line) {
     @if $scan-moving-line == true {
-        animation: scanline 3.3s linear infinite;
+        animation: scanline 1.67s linear infinite;
     }
     @else { animation: none; }
 }
 
 /* CCTV scan lines */
-.scanlines {
+.theme-mn-map .scanlines {
     position: relative;
     overflow: hidden;
 
@@ -1014,7 +1042,7 @@ $scan-opacity: 0.95;
 }
 
 /* More active version of scan lines */
-.featured.scanlines {
+.theme-mn-map .featured.scanlines {
 
   /* Scanline traveling on the screen */
   &:before {
@@ -1025,6 +1053,34 @@ $scan-opacity: 0.95;
     opacity: $scan-opacity;
     @include scan-moving($scan-moving-line);
   }
+
+  &:after {
+
+        background: linear-gradient(
+            to bottom,
+            transparent 50%,
+            $scan-color-heavy 51%
+        );
+        background-size: 100% $scan-width*2;
+        @include scan-crt($scan-crt);
+    }
+
+}
+
+/* Fade scan lines on transition */
+.theme-mn-map .scanlines.active {
+
+    &:after {
+
+        background: linear-gradient(
+            to bottom,
+            transparent 50%,
+            transparent 51%
+        );
+
+        @include scan-crt($scan-crt);
+
+    }
 
 }
 

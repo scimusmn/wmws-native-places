@@ -435,7 +435,7 @@ class KioskVideoList extends React.Component {
           {(this.state.selectionScreenTheme == 'theme-mn-map')
             ?
 
-              <div className='panel'>
+              <div className='left-panel'>
 
                 <HorizontalBreak></HorizontalBreak>
                 <h1>Where did these place names come from?</h1>
