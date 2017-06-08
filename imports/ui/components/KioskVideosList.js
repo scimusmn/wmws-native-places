@@ -305,6 +305,9 @@ class KioskVideoList extends React.Component {
     // state-as-home-button idea.
     Session.set('selectedPlace', selected);
 
+    // Reset screensaver
+    this.resetScreenSaverTimer();
+
     // Log for analytics
     logger.info({ message:'video-selected',
                   kiosk: this.props.location.pathname,

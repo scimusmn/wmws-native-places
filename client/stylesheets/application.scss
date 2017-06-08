@@ -12,7 +12,7 @@
 @import "state/Navbar";
 
 $featured-fill: #c24630;
-$tab-fill: rgba(#bc8d4a, 0.8);
+$tab-fill: rgba(#c59857, 0.9);
 $light-blue-fill: #A6B7B8;
 $dark-blue-fill: #6D8A8C;
 $white-blue-fill: #c6d1d2;
@@ -96,6 +96,7 @@ h1 div.es {
  * Selection screen - Video button questions
  */
 .video-button h2 {
+
   position: absolute;
   bottom: 3px;
   left: 80px;
@@ -108,6 +109,12 @@ h1 div.es {
   /* Required for text-overflow to do anything */
   white-space: nowrap;
   overflow: hidden;
+
+}
+
+.video-button.active h2 {
+
+  display: none;
 
 }
 
@@ -214,7 +221,7 @@ h2 div.es {
   text-align: center;
   color: $white-blue-fill;
 
-  background-color:white;
+  background-color:rgba(white, 0.96);
 
   transition: opacity 0.7s 0.1s ease-out;
   opacity: 0.0;
@@ -224,8 +231,12 @@ h2 div.es {
 
   background-image: url('/images/pattern-tooth.png');
   background-repeat: repeat-x;
-  background-position: 1% 97.5%;
+  background-position: 1% 98.5%;
 
+}
+
+#selection-screen .video-button.active .instruction-card {
+  display: none;
 }
 
 #selection-screen .instruction-card.active {
@@ -235,6 +246,7 @@ h2 div.es {
 
 .instruction-card .h-break {
   padding-top: 4px;
+  clip-path: none !important;
 }
 
 #selection-screen .instruction-card h3 {
@@ -277,16 +289,16 @@ h2 div.es {
 
   background: linear-gradient(
                   to bottom,
-                  #222 50%,
+                  #292929 50%,
                   rgba($white-blue-fill, 0.2) 51%
               );
   background-size: 100% 4px;
 
   $clip-amount: 0px;
-  $clip-round: 24px;
-  $clip-pad: 12px;
+  $clip-round: 11px;
+  $clip-pad: 4px;
 
-  $thumb-width: 480px;
+  $thumb-width: 490px;
   $thumb-height: 270px;
 
   $cell-width: calc(480px - (#{$clip-amount}*2));
@@ -296,8 +308,8 @@ h2 div.es {
   $grid-start-top: 0px;
 
   .thumb-container {
-    left: 12px !important;
-    top: 3px;
+    left: 0px;
+    top: 0px;
     position: absolute;
   }
 
@@ -306,7 +318,7 @@ h2 div.es {
   .video-button img  {
 
     transition: clip-path 0.2s ease-in;
-    clip-path: inset($clip-pad 14px $clip-pad 14px round #{$clip-round} #{$clip-round});
+    clip-path: inset($clip-pad calc(#{$clip-pad} + #{$clip-amount}) $clip-pad calc(#{$clip-pad} + #{$clip-amount}) round #{$clip-round} #{$clip-round});
 
   }
 
@@ -336,11 +348,12 @@ h2 div.es {
   }
 
   /* First column of 4x4 grid. */
+  /* First column of 4x4 grid. */
   .video-01,
   .video-05,
   .video-09,
   .video-013 {
-    left: calc(0 * (#{$thumb-width} - 8px));
+    left: calc((0 * #{$cell-width} - (#{$clip-pad}*2)) + #{$grid-start-left} + (#{$clip-pad}*2) );
   }
 
   /* Second column of 4x4 grid. */
@@ -348,7 +361,7 @@ h2 div.es {
   .video-06,
   .video-010,
   .video-014 {
-    left: calc(1 * (#{$thumb-width} - 8px));
+    left: calc((1 * #{$cell-width} - (#{$clip-pad}*2)) + #{$grid-start-left} + (#{$clip-pad}*2) );
   }
 
   /* Third column of 4x4 grid. */
@@ -356,7 +369,7 @@ h2 div.es {
   .video-07,
   .video-011,
   .video-015 {
-    left: calc(2 * (#{$thumb-width} - 8px));
+    left: calc((2 * #{$cell-width} - (#{$clip-pad}*2)) + #{$grid-start-left} + (#{$clip-pad}*2) );
   }
 
   /* Fourth column of 4x4 grid. */
@@ -364,7 +377,7 @@ h2 div.es {
   .video-08,
   .video-012,
   .video-016 {
-    left: calc(3 * (#{$thumb-width} - 8px));
+    left: calc((3 * #{$cell-width} - (#{$clip-pad}*2)) + #{$grid-start-left} + (#{$clip-pad}*2) );
   }
 
   /* First row of 4x4 grid. */
@@ -372,7 +385,7 @@ h2 div.es {
   .video-02,
   .video-03,
   .video-04 {
-    top: calc(0 * (#{$thumb-height} - 4px));
+    top: calc((0 * #{$thumb-height}) + #{$grid-start-top});
   }
 
   /* Second row of 4x4 grid. */
@@ -380,7 +393,7 @@ h2 div.es {
   .video-06,
   .video-07,
   .video-08 {
-    top: calc(1 * (#{$thumb-height} - 4px));
+    top: calc((1 * #{$thumb-height}) + #{$grid-start-top});
   }
 
   /* Third row of 4x4 grid. */
@@ -388,7 +401,7 @@ h2 div.es {
   .video-010,
   .video-011,
   .video-012 {
-    top: calc(2 * (#{$thumb-height} - 4px));
+    top: calc((2 * #{$thumb-height}) + #{$grid-start-top});
   }
 
   /* Fourth row of 4x4 grid. */
@@ -396,7 +409,7 @@ h2 div.es {
   .video-014,
   .video-015,
   .video-016 {
-    top: calc(3 * (#{$thumb-height} - 4px));
+    top: calc((3 * #{$thumb-height}) + #{$grid-start-top});
   }
 
 }
@@ -472,12 +485,19 @@ h2 div.es {
 
   }
 
+  .video-button.active .overlay {
+
+    outline: none;
+    box-shadow: none;
+
+  }
+
   /* Call to action tab */
   .video-button.featured h2 div.en,
   .video-button.featured h2 div.es {
 
     height: 40px;
-    width: 176px;
+    width: 178px;
     background: $featured-fill;
 
     transition: height 0.25s ease-out, width 0.25s 0.4s ease-out;
@@ -494,7 +514,7 @@ h2 div.es {
 
   .video-button.featured video {
 
-    transition: transform 0.8s 0.4s linear;
+    transition: transform 0.8s 0.4s linear, padding 0.8s linear, float 0.8s linear;
     transform: scale(1.04,1.04);
 
   }
@@ -513,7 +533,7 @@ h2 div.es {
 
   .video-button.featured.cam-mid video {
 
-    transition: padding 1.0s linear;
+    transition: padding 1.0s linear, transform 0.8s 0.4s linear;
     padding-left: 0px;
     padding-top: 0px;
 
@@ -521,28 +541,28 @@ h2 div.es {
 
   .video-button.featured.cam-left video {
 
-    transition: padding 1.1s linear;
+    transition: padding 1.1s linear, transform 0.8s 0.4s linear;
     padding-left: 48px;
 
   }
 
   .video-button.featured.cam-right video {
 
-    transition: padding 1.1s linear;
+    transition: padding 1.1s linear, transform 0.8s 0.4s linear;
     padding-right: 48px;
 
   }
 
   .video-button.featured.cam-up video {
 
-    transition: padding 0.8s linear;
+    transition: padding 0.8s linear, transform 0.8s 0.4s linear;
     padding-top: 10px;
 
   }
 
   .video-button.featured.cam-down video {
 
-    transition: padding 0.8s linear;
+    transition: padding 0.8s linear, transform 0.8s 0.4s linear;
     padding-top: -10px;
 
   }
@@ -830,12 +850,14 @@ h2 div.es {
     font-size: 20px;
     font-family: 'museo300', sans-serif;
     fill: rgba(white, 0.9);
-    transition: font-size 0.5s ease-out !important;
+    transition: all 0.75s ease-out !important;
   }
   .z-cls-3.featured {
     font-size: 48px;
     fill: #FFF;
     box-shadow: 11px 1px 3px rgba(255, 255, 255, 0.9);
+    transition: all 0.75s ease-out !important;
+    opacity: 1.0;
   }
   .z-cls-4 {
     fill:none;
@@ -863,7 +885,7 @@ h2 div.es {
     fill:rgba(#f1f9fb, 0.8);
   }
   .cls-1.featured {
-    /*stroke:$featured-fill;*/
+    stroke-width:14px;
   }
 
 }

@@ -150,9 +150,9 @@ class StateOutline extends React.Component {
               <text id='z-Minnehaha-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(474.09 291.01)'>XX</text>
               <text id='z-Shakopee-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(364.03 348.29)'>XX</text>
               <text id='z-Chanhassen-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(364.03 316.1)'>XX</text>
-              <text id='z-Minnetonka-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(387.7 289.12)'>XX</text>
-              <text id='z-LakeCalhoun-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(435.98 269)'>XX</text>
-              <text id='z-Waconia-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(274.09 322.97)'>XX</text>
+              <text id='z-Minnetonka-txt' className='z-cls-3' textAnchor='middle' dominantBaseline='middle' transform='translate(387.7 289.12)'>XX</text>
+              <text id='z-LakeCalhoun-txt' className='z-cls-3' textAnchor='middle' dominantBaseline='middle' transform='translate(435.98 269)'>XX</text>
+              <text id='z-Waconia-txt' className='z-cls-3' textAnchor='middle' dominantBaseline='middle' transform='translate(274.09 322.97)'>XX</text>
               <text id='z-Wayzata-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(371.13 261.9)'>XX</text>
               <text id='z-Chaska-txt' className='z-cls-3' filter='url(#text-effect-1)' textAnchor='middle' dominantBaseline='middle' transform='translate(337.99 351.37)'>XX</text>
 
