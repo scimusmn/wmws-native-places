@@ -32,7 +32,7 @@ body {
   font-family: 'museo700', sans-serif;
 
   /* Hide cursor */
-  cursor: none;
+  /*cursor: none;*/
 
 }
 
@@ -91,6 +91,17 @@ h1 div.es {
 h1 div.es {
   font-size: 58px;
 }
+
+/**
+ * Util container for wrapping jsx
+ */
+ .clean {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px;
+ }
 
 /**
  * Selection screen - Video button questions
@@ -221,13 +232,20 @@ h2 div.es {
   text-align: center;
   color: $white-blue-fill;
 
-  background-color:rgba(white, 0.96);
-
   transition: opacity 0.7s 0.1s ease-out;
   opacity: 0.0;
   position: absolute;
 
   z-index: 5;
+
+/*  background: linear-gradient(
+                  to bottom,
+                  transparent 50%,
+                  rgba(#333, 0.15) 51%
+              );
+  background-size: 100% 4px;*/
+
+  background-color:rgba(#191919, 0.96);
 
   background-image: url('/images/pattern-tooth.png');
   background-repeat: repeat-x;
@@ -255,16 +273,27 @@ h2 div.es {
   margin-left: 50px;
   margin-right: 50px;
   font-family: 'museo700', sans-serif;
-  color: $dark-blue-fill;
+  color: white;
 }
 
 #selection-screen .instruction-card .sub {
   padding: 14px 0px 0px 0px;
   margin: 0px;
   font-size: 2.0em;
-  color: $light-blue-fill;
+  color: #cfdee0 !important;
   font-family: 'museo300', sans-serif;
 
+}
+
+#selection-screen .video-button .thumb video,
+#selection-screen .video-button .thumb img {
+  position: absolute;
+}
+#selection-screen .video-button .thumb video {
+  z-index: 1;
+}
+#selection-screen .video-button .thumb img {
+  z-index: 2;
 }
 
 #selection-screen .video-button img.dakota {
@@ -273,12 +302,14 @@ h2 div.es {
   position: absolute;
   transition: opacity 2.5s 9s ease-in !important;
   opacity: 0.0;
-  z-index: 2;
+  /*display: none;*/
+  z-index: 3;
 }
 
 #selection-screen .video-button.active img.dakota {
   transition: opacity 0.1s 1.0s ease-in !important;
   opacity: 1.0 !important;
+  /*display: inline;*/
 }
 
 
@@ -320,6 +351,14 @@ h2 div.es {
     transition: clip-path 0.2s ease-in;
     clip-path: inset($clip-pad calc(#{$clip-pad} + #{$clip-amount}) $clip-pad calc(#{$clip-pad} + #{$clip-amount}) round #{$clip-round} #{$clip-round});
 
+  }
+
+  img.static {
+    z-index: 1;
+  }
+
+  .thumb video{
+    z-index: 2;
   }
 
   .video-button .overlay {
@@ -504,7 +543,7 @@ h2 div.es {
 
   }
 
-  .video-button video {
+  .video-button .feed {
 
     transition: transform 0.7s 0.05s linear, padding 0.8s linear, float 0.8s linear;
     transform: scale(1,1);
@@ -512,26 +551,26 @@ h2 div.es {
 
   }
 
-  .video-button.featured video {
+  .video-button.featured .feed {
 
     transition: transform 0.8s 0.4s linear, padding 0.8s linear, float 0.8s linear;
     transform: scale(1.04,1.04);
 
   }
 
-  .video-button.featured.cam-float-left video {
+  .video-button.featured.cam-float-left .feed {
 
     float: right;
 
   }
 
-  .video-button.featured.cam-float-right video {
+  .video-button.featured.cam-float-right .feed {
 
     float: right;
 
   }
 
-  .video-button.featured.cam-mid video {
+  .video-button.featured.cam-mid .feed {
 
     transition: padding 1.0s linear, transform 0.8s 0.4s linear;
     padding-left: 0px;
@@ -539,28 +578,28 @@ h2 div.es {
 
   }
 
-  .video-button.featured.cam-left video {
+  .video-button.featured.cam-left .feed {
 
     transition: padding 1.1s linear, transform 0.8s 0.4s linear;
     padding-left: 48px;
 
   }
 
-  .video-button.featured.cam-right video {
+  .video-button.featured.cam-right .feed {
 
     transition: padding 1.1s linear, transform 0.8s 0.4s linear;
     padding-right: 48px;
 
   }
 
-  .video-button.featured.cam-up video {
+  .video-button.featured.cam-up .feed {
 
     transition: padding 0.8s linear, transform 0.8s 0.4s linear;
     padding-top: 10px;
 
   }
 
-  .video-button.featured.cam-down video {
+  .video-button.featured.cam-down .feed {
 
     transition: padding 0.8s linear, transform 0.8s 0.4s linear;
     padding-top: -10px;
@@ -705,12 +744,14 @@ h2 div.es {
 
     transition: opacity 0.5s ease-out;
     opacity: 0.0;
+    visibility: hidden;
 
   }
 
   .left-panel .featured-label.active {
 
     opacity: 1.0;
+    visibility: visible;
 
   }
 
@@ -793,6 +834,7 @@ h2 div.es {
   .cls-2.featured {
 
     fill:$featured-fill;
+    fill: #b54936;
     stroke-width:0px;
     stroke:$dark-blue-fill;
     transform:scale(7.5, 7.5);
@@ -954,6 +996,7 @@ h2 div.es {
 .home-button img {
   width: 60px;
   opacity: 0.0;
+  visibility: hidden;
   transition: all .1s ease-out;
 
   /* Hide cursor */

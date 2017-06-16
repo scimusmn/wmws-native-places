@@ -2,6 +2,7 @@
   "public": {
     "screenSaverTimeout": 600,
     "installPath": "/usr/local/src/wmws-native-places",
+    "mediaServer": [ "" ],
     "logger": {
       "projectShortName": "wmws",
       "componentNum": "0330",

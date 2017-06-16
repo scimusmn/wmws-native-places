@@ -1,2 +1,9 @@
-// import { BrowserPolicy } from 'meteor/browser-policy-common';
-// e.g., BrowserPolicy.content.allowOriginForAll( 's3.amazonaws.com' );
+import { BrowserPolicy } from 'meteor/browser-policy-common';
+
+const hosts = Meteor.settings.public.mediaServer;
+
+for (var i = 0; i < hosts.length; i++) {
+
+  BrowserPolicy.content.allowOriginForAll(hosts[i]);
+
+}

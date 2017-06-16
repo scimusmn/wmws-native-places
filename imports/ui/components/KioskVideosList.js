@@ -314,6 +314,7 @@ class KioskVideoList extends React.Component {
                   selectedVideo:e.currentTarget.id,
                   position:position,
                   videoLabel: videoLabel,
+                  selectionScreenTheme: this.state.selectionScreenTheme,
                 });
 
     // Transition to fullscreen.

@@ -5,61 +5,82 @@ import Modal from '/node_modules/react-overlays/lib/Modal';
 let VelocityComponent = require('/node_modules/velocity-react/velocity-component');
 
 class VideoCard extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       video: props.video,
       playing: false,
       camMoveClass: '',
+      showDakota: false,
     };
 
+    this.lockStatic = false;
+    this.mediaHost = '';
+    const goodMovies = ['Minnehaha', 'Wabasha', 'Shakopee', 'Minnetonka', 'Kandiyohi', 'Chaska', 'Wayzata', 'Kasota'];
+    const movIndex = goodMovies.indexOf(props.video.labelEn);
+
+    if (movIndex == -1) {
+
+      // Only use image for thumb
+      this.lockStatic = true;
+
+    }
+
+    // Splits loading between multiple http-servers.
+    const numServers = Meteor.settings.public.mediaServer.length;
+    let slot = this.modulo(movIndex, numServers);
+    this.mediaHost = Meteor.settings.public.mediaServer[slot];
+
+    if (this.lockStatic == true) {
+      // Static cards can go to random server.
+      slot = Math.floor(Math.random() * Meteor.settings.public.mediaServer.length);
+    }
+
+  }
+
+  componentDidMount() {
+
+  }
+
+  modulo(n, m) {
+    return ((n % m) + m) % m;
   }
 
   componentWillReceiveProps(nextProps) {
 
+    // Check if newly featured.
     if (nextProps.isFeatured == true && this.props.isFeatured == false) {
 
-      // Newly featured, set up some
-      // timed random movements.
-
-      setTimeout(() => {
-        // First Movement
-        this.setState({camMoveClass:this.randomCamClass()});
-      }, 2600);
-
-      setTimeout(() => {
-        // Second Movement
-        this.setState({camMoveClass:this.randomCamClass()});
-      }, 4200);
-
-      setTimeout(() => {
-        // Third Movement
-        this.setState({camMoveClass:this.randomCamClass()});
-      }, 5800);
-
-      setTimeout(() => {
-        // Final return to center
-        this.setState({camMoveClass:' cam-mid'});
-      }, 7800);
+      this.featuredCamSequence();
 
     }
 
-    // Pause playback when Fullscreen video is playing
-    if (nextProps.isDisabled) return;
+  }
 
-    if (nextProps.playing) {
-      this.refs.vidRef.pause();
-    } else {
+  featuredCamSequence() {
 
-      const vidDuration = this.refs.vidRef.duration;
+    // Newly featured, set up some
+    // timed random movements.
+    setTimeout(() => {
+      // First Movement
+      this.setState({camMoveClass:this.randomCamClass()});
+    }, 2600);
 
-      // If video duration is below
-      // 6 seconds, do not play.
-      if (vidDuration > 6.0) {
-        this.refs.vidRef.play();
-      }
+    setTimeout(() => {
+      // Second Movement
+      this.setState({camMoveClass:this.randomCamClass()});
+    }, 4200);
 
-    }
+    setTimeout(() => {
+      // Third Movement
+      this.setState({camMoveClass:this.randomCamClass()});
+    }, 5800);
+
+    setTimeout(() => {
+      // Final return to center
+      this.setState({camMoveClass:' cam-mid'});
+    }, 7800);
 
   }
 
@@ -100,7 +121,7 @@ class VideoCard extends React.Component {
     let moves = ['left', 'right', 'up', 'down'];
 
     // Chaska exception. Stack odds to go right..
-    if (this.props.video.labelEn == '04') moves.push('right', 'right', 'right');
+    // if (this.props.video.labelEn == '04') moves.push('right', 'right', 'right');
 
     let classString = '';
     const mClass = moves[Math.floor(Math.random() * moves.length)];
@@ -131,10 +152,9 @@ class VideoCard extends React.Component {
 
     const { video } = this.props;
     const paddedVideoNumber = _.padStart(video.videoNumber, 2, '0');
-    const buttonVideoPath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.mp4`;
-    const buttonImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_dakota.png`;
-
-    const disabledImagePath = `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
+    const buttonVideoPath = this.mediaHost + `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.mp4`;
+    const buttonImagePath = this.mediaHost + `/media/${video.componentNumber}/${paddedVideoNumber}_dakota.png`;
+    const staticThumbPath = this.mediaHost + `/media/${video.componentNumber}/${paddedVideoNumber}_thumb.png`;
 
     const paddedPosition = _.padStart(this.props.position, 2, '0');
 
@@ -162,22 +182,31 @@ class VideoCard extends React.Component {
 
         <img src={buttonImagePath} className='dakota' />
 
-        <div className='overlay'>
-        </div>
+        <div className='overlay'></div>
 
-        {this.props.isDisabled ? (
-          <img src={disabledImagePath} />
-        ) : (
-          <video
-            loop='loop'
-            ref='vidRef'
-          >
-            <source
-              src={buttonVideoPath}
-              type='video/mp4'
-            />
-          </video>
-        )}
+        <div className='thumb'>
+
+          {this.lockStatic == false ? (
+
+            <video
+              loop='loop'
+              ref='vidRef'
+              muted='muted'
+              autoPlay={true}
+            >
+              <source
+                src={buttonVideoPath}
+                type='video/mp4'
+              />
+            </video>
+
+          ) : (
+
+            <img className='static feed' src={staticThumbPath} />
+
+          )}
+
+        </div>
 
       </div>
     );
