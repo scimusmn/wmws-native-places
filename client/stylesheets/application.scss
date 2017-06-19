@@ -232,7 +232,7 @@ h2 div.es {
   text-align: center;
   color: $white-blue-fill;
 
-  transition: opacity 0.7s 0.1s ease-out;
+  transition: opacity 0.6s 0.1s ease-out;
   opacity: 0.0;
   position: absolute;
 
@@ -245,7 +245,7 @@ h2 div.es {
               );
   background-size: 100% 4px;*/
 
-  background-color:rgba(#191919, 0.96);
+  background-color:rgba(#111, 0.975);
 
   background-image: url('/images/pattern-tooth.png');
   background-repeat: repeat-x;
@@ -258,7 +258,7 @@ h2 div.es {
 }
 
 #selection-screen .instruction-card.active {
-  transition: opacity 0.8s 3.0s ease-out;
+  transition: opacity 0.7s 4.0s ease-out;
   opacity: 1.0;
 }
 
@@ -351,6 +351,10 @@ h2 div.es {
     transition: clip-path 0.2s ease-in;
     clip-path: inset($clip-pad calc(#{$clip-pad} + #{$clip-amount}) $clip-pad calc(#{$clip-pad} + #{$clip-amount}) round #{$clip-round} #{$clip-round});
 
+  }
+
+  .video-button .instruction-card {
+    clip-path: inset($clip-pad calc(#{$clip-pad} + #{$clip-amount}) $clip-pad calc(#{$clip-pad} + #{$clip-amount}) round #{$clip-round} #{$clip-round});
   }
 
   img.static {

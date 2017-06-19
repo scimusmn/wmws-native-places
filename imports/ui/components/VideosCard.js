@@ -17,8 +17,8 @@ class VideoCard extends React.Component {
 
     this.lockStatic = false;
     this.mediaHost = '';
-    const goodMovies = ['Minnehaha', 'Wabasha', 'Shakopee', 'Minnetonka', 'Kandiyohi', 'Chaska', 'Wayzata', 'Kasota'];
-    const movIndex = goodMovies.indexOf(props.video.labelEn);
+    const usableMovies = ['Minnehaha', 'Wabasha', 'Shakopee', 'Minnetonka', 'Kandiyohi', 'Chaska', 'Wayzata', 'Kasota'];
+    const movIndex = usableMovies.indexOf(props.video.labelEn);
 
     if (movIndex == -1) {
 
@@ -193,6 +193,7 @@ class VideoCard extends React.Component {
               ref='vidRef'
               muted='muted'
               autoPlay={true}
+              className='feed'
             >
               <source
                 src={buttonVideoPath}
