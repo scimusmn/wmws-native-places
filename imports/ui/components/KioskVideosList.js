@@ -32,7 +32,7 @@ class KioskVideoList extends React.Component {
       showVideo: false,
       idleTime: 0,
       screenSaver: 'inactive',
-      selectionScreenTheme: '',
+      selectionScreenTheme: 'theme-fs-grid',
     };
 
     // Generate video-card positions
@@ -62,6 +62,10 @@ class KioskVideoList extends React.Component {
 
   selectTheme() {
 
+    // Always use default fs grid theme. (June 20, 2017)
+
+    /*
+
     // Theme id is passed by query string.
     const queryTheme = this.props.location.query.theme;
 
@@ -87,6 +91,8 @@ class KioskVideoList extends React.Component {
       }
 
     }
+
+    */
 
     // Listen for future 't'
     // keystrokes to toggle in realtime.
