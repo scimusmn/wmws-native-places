@@ -109,31 +109,6 @@ class KioskVideoList extends React.Component {
 
   }
 
-/*  timerIncrement() {
-    const idleTime = this.state.idleTime + 1;
-    this.setState({ idleTime });
-    const screenSaverTimeout = Meteor.settings.public.screenSaverTimeout;
-    if (this.state.idleTime >= screenSaverTimeout) {
-
-      if (this.state.screenSaver == 'inactive') {
-        // Log for analytics
-        logger.info({message:'inactivity-timeout', inactiveTime:screenSaverTimeout * 1000,});
-      }
-
-      this.setState({
-        playing: false,
-        screenSaver: 'active',
-      });
-
-      // Normally we'd display screensaver here,
-      // but since this does not have a screensaver state,
-      // we will refresh the page.
-      // TODO: Is this how we want to hand screensaver?
-      location.reload();
-
-    }
-  }*/
-
   timerIncrement() {
 
     // Ignore when video is playing.
@@ -159,11 +134,7 @@ class KioskVideoList extends React.Component {
         // Format video name
         const rVideo = 'video-' + _.padStart(this.props.videos[rIndex].videoNumber, 2, '0');
 
-        const selected = this.positionLookup[rPosition];
-
-        // Launch fullscreen video player
-        this.launchVideoPlayer(rVideo, rPosition, selected);
-
+        // Increment screensaver play count.
         const newScreenSaverCount = this.state.screenSaverCount + 1;
 
         // Reset screensaver count
@@ -175,6 +146,10 @@ class KioskVideoList extends React.Component {
           // without interaction, we will refresh the page.
           location.reload();
         } else {
+
+          // Launch fullscreen video player
+          this.launchVideoPlayer(rVideo, rPosition);
+
           this.setState({ screenSaverCount: newScreenSaverCount});
         }
 
@@ -250,9 +225,6 @@ class KioskVideoList extends React.Component {
       this.positionLookup[vids[j].labelEn] = this.videoOrder[vids[j].videoNumber - 1];
 
     }
-
-    console.log('Video positions:');
-    console.dir(this.positionLookup);
 
   }
 
@@ -348,57 +320,6 @@ class KioskVideoList extends React.Component {
 
   }
 
-/*  launchVideoPlayer(e) {
-
-    const position = e.currentTarget.getAttribute('data-position');
-    const selected = this.positionLookup[position];
-    const homeX = parseInt($(e.currentTarget).css('left'));
-    const homeY = parseInt($(e.currentTarget).css('top'));
-    const videoLabel = selected.labelEn;
-
-    this.setState({
-      playing: true,
-      selectedVideo: e.currentTarget.id,
-      selectedPosition: position,
-      selectedHomeX: homeX,
-      selectedHomeY: homeY,
-      showVideo: true,
-      transitioning: true,
-    });
-
-    // Global awareness
-    // Todo: should be passed through
-    // state, but this is temp for trying
-    // state-as-home-button idea.
-    Session.set('selectedPlace', selected);
-
-    // Reset screensaver
-    this.resetScreenSaverTimer();
-
-    // Log for analytics
-    logger.info({ message:'video-selected',
-                  kiosk: this.props.location.pathname,
-                  selectedVideo:e.currentTarget.id,
-                  position:position,
-                  videoLabel: videoLabel,
-                  selectionScreenTheme: this.state.selectionScreenTheme,
-                });
-
-    // Transition to fullscreen.
-    const vidBtn = $('.video-button.video-0' + position);
-    TweenMax.to(vidBtn, 0.45, {scale:4, top:0, left:0, ease:Power2.easeOut});
-    TweenMax.set(vidBtn, {zIndex:2});
-
-    // Wait for transition
-    // to kill display state
-    setTimeout(()=> {
-
-      this.setState({ transitioning: false });
-
-    }, this.transEnterTime);
-
-  }*/
-
   videoButtonSelected(e) {
 
     const id = e.currentTarget.id;
@@ -415,7 +336,7 @@ class KioskVideoList extends React.Component {
                   videoLabel: videoLabel,
                   });
 
-    this.launchVideoPlayer(id, position, selected);
+    this.launchVideoPlayer(id, position);
 
   }
 
