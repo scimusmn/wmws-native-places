@@ -87,7 +87,7 @@ class VideoCard extends React.Component {
   handleVideoSelect(e) {
 
     // Send parent component the video launch event
-    this.props.launchVideoPlayer(e);
+    this.props.videoButtonSelected(e);
 
   }
 
@@ -218,7 +218,7 @@ class VideoCard extends React.Component {
 VideoCard.propTypes = {
   playing: React.PropTypes.bool,
   video: React.PropTypes.object,
-  launchVideoPlayer: React.PropTypes.func,
+  videoButtonSelected: React.PropTypes.func,
   position: React.PropTypes.number,
   isActive: React.PropTypes.bool,
   isInstruction: React.PropTypes.bool,
