@@ -191,7 +191,8 @@ h2 div.es {
 
 #selection-screen .video-button,
 #selection-screen .video-button .thumb img,
-#selection-screen .video-button .thumb video {
+#selection-screen .video-button .thumb video,
+#selection-screen .video-button .overlay {
 
   /* Use hardware acceleration */
   -webkit-transform: translateZ(0);
