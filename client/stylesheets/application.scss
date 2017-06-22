@@ -231,7 +231,7 @@ h2 div.es {
 #selection-screen .video-button .overlay {
   background-color: #000;
   opacity: 0.0;
-  transition: opacity 1s 0.8s ease-in-out;
+  transition: opacity 1s 0.7s ease-in-out;
 
 }
 
@@ -240,7 +240,7 @@ h2 div.es {
 }
 
 #selection-screen .video-button.diminish .overlay {
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 0.35s ease-out;
 }
 
