@@ -359,7 +359,7 @@ class KioskVideoList extends React.Component {
 
       playing: true,
       selectedVideo: id,
-      selectedPosition: position,
+      selectedPosition: parseInt(position),
       selectedHomeX: homeX,
       selectedHomeY: homeY,
       showVideo: true,
@@ -436,6 +436,7 @@ class KioskVideoList extends React.Component {
         key={video._id}
         position={this.videoOrder[index]}
         video={video}
+        selectedPosition={this.state.selectedPosition}
         isActive={this.isActiveCard(this.videoOrder[index])}
         isInstruction={this.isInstructionCard(this.videoOrder[index])}
         isFeatured={this.isFeaturedCard(this.videoOrder[index])}

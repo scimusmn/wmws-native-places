@@ -96,7 +96,14 @@ class VideoCard extends React.Component {
     let className = 'video-button ' + this.props.video.labelEn;
 
     // Is currently Active?
-    className += ((this.props.isActive == true) ? ' active' : '');
+    if (this.props.isActive == true) {
+      className += ' active';
+    } else {
+      // Is any other video card currently active?
+      if (this.props.selectedPosition != -1) {
+        className += ' diminish';
+      }
+    }
 
     // Is currently Featured?
     className += ((this.props.isFeatured == true) ? ' featured' : '');
@@ -220,6 +227,7 @@ VideoCard.propTypes = {
   video: React.PropTypes.object,
   videoButtonSelected: React.PropTypes.func,
   position: React.PropTypes.number,
+  selectedPosition: React.PropTypes.number,
   isActive: React.PropTypes.bool,
   isInstruction: React.PropTypes.bool,
   isFeatured: React.PropTypes.bool,
