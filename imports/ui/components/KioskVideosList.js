@@ -48,6 +48,9 @@ class KioskVideoList extends React.Component {
     this.startInstructionCycle();
     this.startFeaturedCycle();
 
+    this.lastVidClosedTime = 0;
+    this.showIdentification = true;
+
   }
 
   componentDidMount() {
@@ -286,6 +289,7 @@ class KioskVideoList extends React.Component {
     } else {
       return false;
     }
+
   }
 
   isInstructionCard(index) {
@@ -335,6 +339,9 @@ class KioskVideoList extends React.Component {
                   position: position,
                   videoLabel: videoLabel,
                   });
+
+    // Determine whether to display name tag.
+    this.refreshNameTagState();
 
     this.launchVideoPlayer(id, position);
 
@@ -393,6 +400,11 @@ class KioskVideoList extends React.Component {
       // Log for analytics
       logger.info({message:'video-exit', vidData});
 
+      // Remember time to for gap between
+      // this video ending and next starting.
+      const now = new Date().getTime();
+      this.lastVidClosedTime = now;
+
       setTimeout(()=> {
 
         // Transition back from fullscreen.
@@ -421,6 +433,24 @@ class KioskVideoList extends React.Component {
     }
 
     return doLoop;
+
+  }
+
+  refreshNameTagState() {
+
+    const now = new Date().getTime();
+
+    // If more than 120 secs since last time
+    // name tag was shown, display during next video.
+    if (now - this.lastVidClosedTime > (15 * 1000)) {
+
+      this.showIdentification = true;
+
+    } else {
+
+      this.showIdentification = false;
+
+    }
 
   }
 
@@ -464,7 +494,6 @@ class KioskVideoList extends React.Component {
           {videoCards}
         </div>
 
-
         <ReactCSSTransitionGroup
               transitionName='player-fade'
               transitionAppear={false}
@@ -481,6 +510,7 @@ class KioskVideoList extends React.Component {
                 handleHomeAction={this.closeModal.bind(this)}
                 componentNumber={this.state.componentNumber}
                 selectedVideo={this.state.selectedVideo}
+                showNameTag={this.showIdentification}
               />
 
             : null

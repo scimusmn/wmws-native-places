@@ -1017,6 +1017,21 @@ h2 div.es {
 
 }
 
+.video-player .name-tag {
+    position: fixed;
+    left: 0px;
+    bottom: 400px;
+    background-color: rgba(255,255,255,0.4);
+    width: 400px;
+    height: 220px;
+    opacity: 0.0;
+    transition: opacity 0.7s ease-out;
+}
+
+.video-player .name-tag.active {
+    opacity: 1.0;
+}
+
 .home-button img {
   width: 60px;
   opacity: 0.0;

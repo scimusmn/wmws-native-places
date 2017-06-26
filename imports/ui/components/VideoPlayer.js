@@ -1,5 +1,6 @@
 import React from 'react';
 import VideoHomeButton from './VideoHomeButton';
+import NameTag from './NameTag';
 
 class VideoPlayer extends React.Component {
   constructor(props) {
@@ -13,6 +14,15 @@ class VideoPlayer extends React.Component {
     const selectedVideo = props.selectedVideo.replace('video-', '') + '.mp4';
     const serverSlot = Math.floor(Math.random() * Meteor.settings.public.mediaServer.length);
     this.videoSrcPath = Meteor.settings.public.mediaServer[serverSlot] + `/media/${props.componentNumber}/${selectedVideo}`;
+
+  }
+
+  componentDidMount() {
+    this.setState({isTransitioning:true});
+
+    setTimeout(() => {
+      this.setState({isTransitioning:false});
+    }, 2250);
 
   }
 
@@ -56,6 +66,15 @@ class VideoPlayer extends React.Component {
           homeAction={this.localHomeAction}
         />
 
+        {(this.props.showNameTag == true)
+          ?
+
+            <NameTag />
+
+          : null
+        }
+
+
       </div>
     );
   }
@@ -67,6 +86,7 @@ VideoPlayer.propTypes = {
   handleHomeAction: React.PropTypes.func,
   componentNumber: React.PropTypes.string,
   selectedVideo: React.PropTypes.string,
+  showNameTag: React.PropTypes.bool,
 };
 
 export default VideoPlayer;
