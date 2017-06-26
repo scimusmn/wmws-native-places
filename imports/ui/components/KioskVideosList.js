@@ -440,8 +440,8 @@ class KioskVideoList extends React.Component {
 
     const now = new Date().getTime();
 
-    // If more than 120 secs since last time
-    // name tag was shown, display during next video.
+    // If more than 15 secs since last video
+    // ended, display during this video.
     if (now - this.lastVidClosedTime > (15 * 1000)) {
 
       this.showIdentification = true;
