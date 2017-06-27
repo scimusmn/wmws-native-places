@@ -22,8 +22,8 @@ class NameTag extends React.Component {
       this.setState({isTransitioning:false});
       this.fadeTimer = setTimeout(() => {
         this.setState({isTransitioning:true});
-      }, 8500);
-    }, 2400);
+      }, 8100);
+    }, 3300);
 
   }
 

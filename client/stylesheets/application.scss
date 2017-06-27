@@ -232,7 +232,7 @@ h2 div.es {
 #selection-screen .video-button .overlay {
   background-color: #000;
   opacity: 0.0;
-  transition: opacity 1s 0.7s ease-in-out;
+  transition: opacity 1s 0.4s ease-in-out;
 
 }
 
@@ -1019,17 +1019,53 @@ h2 div.es {
 
 .video-player .name-tag {
     position: fixed;
-    left: 0px;
-    bottom: 400px;
+    right: 0px;
+    bottom: 420px;
     background-color: rgba(255,255,255,0.4);
-    width: 400px;
-    height: 220px;
+    width: 520px;
+    height: 200px;
     opacity: 0.0;
     transition: opacity 0.7s ease-out;
+
+    box-shadow: 0px 0px 24px -3px rgba(0,0,0,0.6);
+    background-image: url('/images/name-tag.png');
+
+    color: white;
+
+    padding-left: 36px;
+    padding-top: 12px;
+    padding-bottom: 4px;
+
+}
+
+.video-player .name-tag h2 {
+  font-size: 42px;
+  letter-spacing: 1px;
+}
+
+.video-player .name-tag p {
+  font-size: 32px;
+  letter-spacing: 1px;
+  font-family: 'museo300', sans-serif;
 }
 
 .video-player .name-tag.active {
     opacity: 1.0;
+}
+
+.video-player .progress-bar {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  height: 6px;
+  width: 100%;
+  background-color: rgba($light-blue-fill, 0.9);
+
+  transform: translate3d(0, 0, 0);
+  transform-origin: 0% 0%;
+  transform: scaleX(0%);
+
+  /*transition: transform .025s linear;*/
 }
 
 .home-button img {
