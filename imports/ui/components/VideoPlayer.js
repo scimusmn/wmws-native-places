@@ -27,7 +27,7 @@ class VideoPlayer extends React.Component {
     // Start progress bar interval.
     this.progressTimer = setInterval(() => {
       this.updateProgress();
-    }, 59);
+    }, 16);
 
   }
 
