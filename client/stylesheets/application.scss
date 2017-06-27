@@ -1027,7 +1027,7 @@ h2 div.es {
     opacity: 0.0;
     transition: opacity 0.7s ease-out;
 
-    box-shadow: 0px 0px 24px -3px rgba(0,0,0,0.6);
+    box-shadow: 0px 0px 24px -3px rgba(0,0,0,0.8);
     background-image: url('/images/name-tag.png');
 
     color: white;
@@ -1041,6 +1041,7 @@ h2 div.es {
 .video-player .name-tag h2 {
   font-size: 42px;
   letter-spacing: 1px;
+  font-family: 'museo700', sans-serif !important;
 }
 
 .video-player .name-tag p {
@@ -1057,9 +1058,9 @@ h2 div.es {
   position: fixed;
   bottom: 0px;
   left: 0px;
-  height: 6px;
+  height: 9px;
   width: 100%;
-  background-color: rgba($light-blue-fill, 0.9);
+  background-color: rgba(#83bcc0, 0.85);
 
   transform: translate3d(0, 0, 0);
   transform-origin: 0% 0%;
