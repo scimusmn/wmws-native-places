@@ -412,7 +412,7 @@ class KioskVideoList extends React.Component {
         TweenMax.to(vidBtn, 0.45, {scale:1, top:this.state.selectedHomeY, left:this.state.selectedHomeX, ease:Power2.easeOut});
         TweenMax.set(vidBtn, {zIndex:1, delay:0.46});
 
-        this.setState({ transitioning: false, selectedPosition:-1, selectedHomeX:-1, selectedHomeY:-1 });
+        this.setState({ transitioning: false, selectedPosition: -1, selectedHomeX: -1, selectedHomeY: -1 });
 
       }, 200);
 
