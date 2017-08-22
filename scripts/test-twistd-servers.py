@@ -2,6 +2,7 @@
 
 import datetime
 import os
+import signal
 
 # request lib must be manually installed
 # $ sudo pip install requests
@@ -9,6 +10,13 @@ import requests
 
 # Asset URLs from every Twistd server
 requestURLs = ['http://localhost:8080/01.mp4', 'http://localhost:8070/01.mp4', 'http://localhost:8060/01.mp4', 'http://localhost:8050/01.mp4'];
+
+# Search for a process by name, then send kill message.
+def killProcessesByName(pstring):
+    for line in os.popen('ps ax | grep ' + pstring + ' | grep -v grep'):
+        fields = line.split()
+        pid = fields[0]
+        os.kill(int(pid), signal.SIGKILL)
 
 def logAndReboot(reason):
     print('Error! [' + reason + '] Twistd server failed. Restart computer.')
@@ -22,6 +30,9 @@ def logAndReboot(reason):
 
     # close filestream
     f.close()
+
+    # kill python (twistd) processes
+    killProcessesByName('python')
 
     # restart computer
     # os.system('sudo reboot')
