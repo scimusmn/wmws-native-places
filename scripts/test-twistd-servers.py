@@ -9,17 +9,19 @@ import signal
 import requests
 
 # Asset URLs from every Twistd server
-requestURLs = ['http://localhost:8080/01.mp4', 'http://localhost:8070/01.mp4', 'http://localhost:8060/01.mp4', 'http://localhost:8050/01.mp4'];
+requestURLs = ['http://localhost:8080/media/0001/01.mp4', 'http://localhost:8070/media/0001/01.mp4', 'http://localhost:8060/media/0001/01.mp4', 'http://localhost:8050/media/0001/01.mp4'];
 
 # Search for a process by name, then send kill message.
 def killProcessesByName(pstring):
     for line in os.popen('ps ax | grep ' + pstring + ' | grep -v grep'):
         fields = line.split()
         pid = fields[0]
+        print('Killing [' + pstring + '] process:', pid)
         os.kill(int(pid), signal.SIGKILL)
 
+
 def logAndReboot(reason):
-    print('Error! [' + reason + '] Twistd server failed. Restart computer.')
+    print('Error! [' + reason + '] Twistd server failed. Restart computer or processes.')
 
     # open log file in append mode
     f = open('test-twistd-servers-log.txt', 'a')
@@ -32,14 +34,11 @@ def logAndReboot(reason):
     f.close()
 
     # kill python (twistd) processes
-    killProcessesByName('python')
+    killProcessesByName('bin/twistd')
 
-    # restart computer
-    # os.system('sudo reboot')
-
-    # exit python script
-    quit()
-
+    # manually restart twistd startup script
+    print ('run twisted-server-startup.sh...')
+    os.system('/usr/local/bin/twisted-server-startup.sh')
 
 # Request a test asset from each server.
 for requestURL in requestURLs:
@@ -52,7 +51,7 @@ for requestURL in requestURLs:
         if r.status_code == 200:
             print('Server responded correctly. Carry on.')
         else:
-          logAndReboot('Http-Status-'+r.status_code);
+          logAndReboot('Http-Status-'+str(r.status_code));
 
     except requests.ConnectionError:
         logAndReboot('ConnectionError');
